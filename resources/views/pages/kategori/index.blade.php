@@ -13,7 +13,7 @@
 
                 </div>
                 <div class="col-sm-4">
-                    <a class="btn btn-primary my-1" href="{{ url('/tambah-cabang') }}">Tambah</a>
+                    <a class="btn btn-primary my-1" href="{{ url('/tambah-kategori') }}">Tambah</a>
                 </div>
                 <div class="card-block table-border-style">
 
@@ -22,11 +22,8 @@
                             <thead>
                                 <tr class="text-center">
                                     <th>#</th>
-                                    <th>Kode Cabang</th>
-                                    <th>Nama Cabang</th>
-                                    <th>No Hp</th>
-                                    <th>Email</th>
-                                    <th>Alamat</th>
+                                    <th>Kode Kategori</th>
+                                    <th>Nama Kategori</th>
                                     <th>Option</th>
                                 </tr>
                             </thead>
@@ -34,16 +31,14 @@
                                 @foreach ($data as $dt)
                                     <tr class="text-center">
                                         <th scope="row">{{ $loop->iteration }}</th>
-                                        <td>{{ $dt->kode_cabang }}</td>
+                                        <td>{{ $dt->kode_kategori }}</td>
                                         <td>{{ $dt->nama }}</td>
-                                        <td>{{ $dt->no_hp }}</td>
-                                        <td>{{ $dt->email }}</td>
-                                        <td>{{ $dt->alamat }}</td>
+
                                         <td>
                                             <a class="btn btn-warning btn-sm text-sm"
-                                                href="{{ url('/edit-cabang/' . $dt->id) }}">Edit</a>
+                                                href="{{ url('/edit-kategori/' . $dt->id) }}">Edit</a>
                                             <a class="btn btn-danger btn-sm"
-                                                href="{{ url('/hapus-cabang/' . $dt->id) }}">Hapus</a>
+                                                href="{{ url('/hapus-kategori/' . $dt->id) }}">Hapus</a>
                                         </td>
                                     </tr>
                                 @endforeach

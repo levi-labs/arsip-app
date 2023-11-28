@@ -13,9 +13,12 @@ class KategoriController extends Controller
     public function index()
     {
         $title      = 'Daftar Kategori';
-        $kategori   = Kategori::all();
+        $data   = Kategori::all();
 
-        return view('pages.kategori.index', ['title' => $title, 'kategori' => $kategori]);
+        return view('pages.kategori.index', [
+            'title' => $title,
+            'data' => $data
+        ]);
     }
 
     /**
@@ -23,10 +26,13 @@ class KategoriController extends Controller
      */
     public function create()
     {
-        $title      = 'Form tambah kategori';
-        $kode       = 'KTG-0001';
+        $title              = 'Form tambah kategori';
+        $kode_kategori      = new Kategori();
 
-        return view('pages.kategori.tambah', ['title' => $title, 'kode' => $kode]);
+        return view('pages.kategori.tambah', [
+            'title' => $title,
+            'kode_kategori' => $kode_kategori->getKodeKategori()
+        ]);
     }
 
     /**
@@ -39,8 +45,9 @@ class KategoriController extends Controller
         ]);
 
         $kategori       = new Kategori();
-        $kategori->nama = $request->nama;
-        $kategori->kode = 'KTG-0001';
+        $kategori->nama          = $request->nama;
+        $kategori->kode_kategori = $request->kode_kategori;
+        $kategori->save();
 
         return redirect('/kategori')->with('success', 'Kategori added successfully...');
     }
@@ -59,10 +66,10 @@ class KategoriController extends Controller
     public function edit(Kategori $kategori)
     {
         $title          = 'Form Edit Kategori';
-        $kategori       = Kategori::where('id', $kategori)->first();
+        $data           = Kategori::where('id', $kategori->id)->first();
 
 
-        return view('pages.kategori.edit', ['title' => $title, 'kategori' => $kategori]);
+        return view('pages.kategori.edit', ['title' => $title, 'data' => $data]);
     }
 
     /**
@@ -74,9 +81,11 @@ class KategoriController extends Controller
             'nama' => 'required',
         ]);
 
-        $kategori       = Kategori::where('id', $kategori)->first();
+        $kategori       = Kategori::where('id', $kategori->id)->first();
         $kategori->nama = $request->nama;
         $kategori->save();
+
+        return redirect('/kategori')->with('success', 'Kategori updated successfully...');
     }
 
     /**
@@ -84,7 +93,7 @@ class KategoriController extends Controller
      */
     public function destroy(Kategori $kategori)
     {
-        $kategori       = Kategori::where('id', $kategori)->first();
+        $kategori       = Kategori::where('id', $kategori->id)->first();
         $kategori->delete();
 
         return back()->with('success', 'Kategori deleted successfully...');

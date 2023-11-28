@@ -15,7 +15,10 @@ class CabangController extends Controller
     {
         $title      = 'Daftar Cabang';
         $data       = Cabang::all();
-        return view('pages.cabang.index', ['title' => $title, 'data' => $data]);
+        return view('pages.cabang.index', [
+            'title' => $title,
+            'data' => $data
+        ]);
     }
 
     /**
@@ -24,10 +27,13 @@ class CabangController extends Controller
     public function create()
     {
         $title          = 'Form Tambah Cabang';
-        $supplier       = Supplier::with('kode_supplier', 'nama')->get();
-        $kode_cabang    = 'CBG-0001'; //Auto Generate
+        // $supplier       = Supplier::with('kode_supplier', 'nama')->get();
+        $kode_cabang    = new Cabang();
 
-        return view('pages.cabang.tambah', ['title' => $title, 'supplier' => $supplier, 'kode_cabang' => $kode_cabang]);
+        return view('pages.cabang.tambah', [
+            'title' => $title,
+            'kode_cabang' => $kode_cabang->getKodeCabang()
+        ]);
     }
 
     /**
@@ -42,11 +48,12 @@ class CabangController extends Controller
             'alamat'    => 'required'
         ]);
 
-        $cabang         = new Cabang();
-        $cabang->nama   = $request->nama;
-        $cabang->no_hp  = $request->no_hp;
-        $cabang->email  = $request->email;
-        $cabang->alamat = $request->alamat;
+        $cabang                 = new Cabang();
+        $cabang->kode_cabang    = $request->kode_cabang;
+        $cabang->nama           = $request->nama;
+        $cabang->no_hp          = $request->no_hp;
+        $cabang->email          = $request->email;
+        $cabang->alamat         = $request->alamat;
         $cabang->save();
 
 
@@ -68,9 +75,11 @@ class CabangController extends Controller
     public function edit(Cabang $cabang)
     {
         $title      = 'Form Edit Cabang';
-        $cabang     = Cabang::where('id', $cabang)->first();
+        $data     = Cabang::where('id', $cabang->id)->first();
 
-        return view('pages.cabang.edit', ['title' => $title, 'cabang' => $cabang]);
+        return view('pages.cabang.edit', [
+            'title' => $title, 'data' => $data
+        ]);
     }
 
     /**
@@ -84,7 +93,7 @@ class CabangController extends Controller
             'email'     => 'required',
             'alamat'    => 'required'
         ]);
-        $cabang         = Cabang::where('id', $cabang)->first();
+        $cabang         = Cabang::where('id', $cabang->id)->first();
         $cabang->nama   = $request->nama;
         $cabang->no_hp  = $request->no_hp;
         $cabang->email  = $request->email;
@@ -99,7 +108,7 @@ class CabangController extends Controller
      */
     public function destroy(Cabang $cabang)
     {
-        $cabang = Cabang::where('id', $cabang)->first();
+        $cabang = Cabang::where('id', $cabang->id)->first();
         $cabang->delete();
 
 

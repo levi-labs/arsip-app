@@ -26,6 +26,7 @@
                     <a href="javascript:" class="nav-link "><span class="pcoded-micon"><i
                                 class="feather icon-box"></i></span><span class="pcoded-mtext">Data Master</span></a>
                     <ul class="pcoded-submenu">
+                        <li class=""><a href="{{ url('/kategori') }}" class="">Kategori</a></li>
                         <li class=""><a href="{{ url('/barang') }}" class="">Barang</a></li>
                         <li class=""><a href="bc_badges.html" class="">Badges</a></li>
                         <li class=""><a href="bc_breadcrumb-pagination.html" class="">Breadcrumb &

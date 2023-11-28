@@ -3,6 +3,7 @@
 use App\Http\Controllers\BarangController;
 use App\Http\Controllers\CabangController;
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\KategoriController;
 use App\Http\Controllers\SupplierController;
 use Illuminate\Support\Facades\Route;
 
@@ -37,6 +38,14 @@ Route::post('/post-cabang', [CabangController::class, 'store']);
 Route::get('/edit-cabang/{cabang}', [CabangController::class, 'edit']);
 Route::post('/update-cabang/{cabang}', [CabangController::class, 'update']);
 Route::get('/hapus-cabang/{cabang}', [CabangController::class, 'destroy']);
+
+//kategori
+Route::get('/kategori', [KategoriController::class, 'index']);
+Route::get('/tambah-kategori', [KategoriController::class, 'create']);
+Route::post('/post-kategori', [KategoriController::class, 'store']);
+Route::get('/edit-kategori/{kategori}', [KategoriController::class, 'edit']);
+Route::post('/update-kategori/{kategori}', [KategoriController::class, 'update']);
+Route::get('/hapus-kategori/{kategori}', [KategoriController::class, 'destroy']);
 
 //Barang
 Route::get('/barang', [BarangController::class, 'index']);
