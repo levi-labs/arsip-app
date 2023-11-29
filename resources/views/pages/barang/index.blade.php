@@ -4,6 +4,9 @@
         <div class="col-xl-12">
             <div class="card">
                 <div class="card-header">
+                    @if (session('success'))
+                        <div class="alert alert-success text-dark" role="alert">{{ session('success') }}</div>
+                    @endif
                     <h5>{{ $title }}</h5>
                     {{-- <span class="d-block m-t-5">use class <code>table-hover</code> inside table element</span> --}}
 
@@ -26,20 +29,24 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                @for ($i = 0; $i < 10; $i++)
+                                @foreach ($data as $dt)
                                     <tr class="text-center">
-                                        <th scope="row">{{ $i + 1 }}</th>
-                                        <td>Mark</td>
-                                        <td>Otto</td>
-                                        <td>@mdo</td>
-                                        <td>@3000</td>
+                                        <th scope="row">{{ $loop->iteration }}</th>
+                                        <td>{{ $dt->kode_barang }}</td>
+                                        <td>{{ $dt->nama }}</td>
+                                        <td>{{ $dt->stock }}</td>
+                                        <td>{{ $dt->harga_barang }}</td>
                                         <td>
+                                            <a class="btn btn-info btn-sm text-sm"
+                                                href="{{ url('/detail-barang/' . $dt->id) }}">Detail</a>
                                             <a class="btn btn-warning btn-sm text-sm"
-                                                href="{{ url('/edit-barang') }}">Edit</a>
-                                            <a class="btn btn-danger btn-sm" href="{{ url('/hapus-barang') }}">Hapus</a>
+                                                href="{{ url('/edit-barang/' . $dt->id) }}">Edit</a>
+                                            <a class="btn btn-danger btn-sm"
+                                                href="{{ url('/hapus-barang/' . $dt->id) }}">Hapus</a>
                                         </td>
                                     </tr>
-                                @endfor
+                                @endforeach
+
                             </tbody>
                         </table>
                     </div>

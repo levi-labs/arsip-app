@@ -51,6 +51,7 @@ Route::get('/hapus-kategori/{kategori}', [KategoriController::class, 'destroy'])
 Route::get('/barang', [BarangController::class, 'index']);
 Route::get('/tambah-barang', [BarangController::class, 'create']);
 Route::post('/post-barang', [BarangController::class, 'store']);
+Route::get('/detail-barang/{barang}', [BarangController::class, 'show']);
 Route::get('/edit-barang/{barang}', [BarangController::class, 'edit']);
 Route::post('/update-barang/{barang}', [BarangController::class, 'update']);
 Route::get('/hapus-barang/{barang}', [BarangController::class, 'destroy']);
