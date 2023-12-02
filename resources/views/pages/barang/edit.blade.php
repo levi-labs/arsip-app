@@ -18,7 +18,7 @@
                                     <label for="exampleInputEmail1">Kode Barang</label>
                                     <input type="text" class="form-control" id="exampleInputEmail1"
                                         aria-describedby="emailHelp" placeholder="{{ $data->kode_barang }}"
-                                        name="kode_barang" value="{{ $data->kode_barang }}">
+                                        name="kode_barang" value="{{ $data->kode_barang }}" readonly>
                                     {{-- <small id="emailHelp" class="form-text text-muted">We'll never share your email with
                                         anyone else.</small> --}}
                                     @error('kode_barang')

@@ -112,7 +112,7 @@ class BarangController extends Controller
             'kategori'      => 'required',
             'harga'         => 'required',
             'stock'         => 'required',
-            'foto'          => 'required'
+
         ]);
 
         try {

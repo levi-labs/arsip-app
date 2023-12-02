@@ -28,7 +28,7 @@
                     <ul class="pcoded-submenu">
                         <li class=""><a href="{{ url('/kategori') }}" class="">Kategori</a></li>
                         <li class=""><a href="{{ url('/barang') }}" class="">Barang</a></li>
-                        <li class=""><a href="bc_badges.html" class="">Badges</a></li>
+                        <li class=""><a href="{{ url('/barang-masuk') }}" class="">Barang Masuk</a></li>
                         <li class=""><a href="bc_breadcrumb-pagination.html" class="">Breadcrumb &
                                 paggination</a></li>
                         <li class=""><a href="bc_collapse.html" class="">Collapse</a></li>

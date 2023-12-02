@@ -18,9 +18,9 @@ class Cabang extends Model
     {
 
         $date = Carbon::now()->format('dm');
-        $supplier = $this->count();
+        $cabang = $this->count();
 
-        if ($supplier == 0) {
+        if ($cabang == 0) {
             $counter  = 00001;
             $number   = 'CBG-' . sprintf('%05s', $counter);
         } else {

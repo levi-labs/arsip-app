@@ -4,7 +4,7 @@
         <div class="card">
             <div class="card-body">
                 <div class="row">
-                    <div class="col-md-4">
+                    <div class="col-md-4 mt-5">
                         <img class="img-thumbnail custom-image" src="{{ $barang->getImage() }}" alt="" width="600px;">
                     </div>
                     <div class="col-md-6">
@@ -35,7 +35,7 @@
 
                                         <tr>
                                             <th>Harga</th>
-                                            <td>{{ $barang->harga_barang }}</td>
+                                            <td>@currency($barang->harga_barang)</td>
                                         </tr>
 
                                         <tr>

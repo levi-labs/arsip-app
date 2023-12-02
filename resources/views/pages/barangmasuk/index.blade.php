@@ -12,7 +12,7 @@
 
                 </div>
                 <div class="col-sm-4">
-                    <a class="btn btn-primary my-1" href="{{ url('/tambah-barang') }}">Tambah</a>
+                    <a class="btn btn-primary my-1" href="{{ url('/pilih-sumber-barang') }}">Tambah</a>
                 </div>
                 <div class="card-block table-border-style">
 
@@ -21,10 +21,8 @@
                             <thead>
                                 <tr class="text-center">
                                     <th>#</th>
-                                    <th>Kode Barang</th>
-                                    <th>Nama Barang</th>
-                                    <th>Stock</th>
-                                    <th>Harga</th>
+                                    <th>Kode Surat | No Arsip</th>
+                                    <th>Tanggal</th>
                                     <th>Option</th>
                                 </tr>
                             </thead>
@@ -32,17 +30,16 @@
                                 @foreach ($data as $dt)
                                     <tr class="text-center">
                                         <th scope="row">{{ $loop->iteration }}</th>
-                                        <td>{{ $dt->kode_barang }}</td>
-                                        <td>{{ $dt->nama }}</td>
-                                        <td>{{ $dt->stock }}</td>
-                                        <td>@currency($dt->harga_barang)</td>
+                                        <td>{{ $dt->kode_surat }}</td>
+                                        <td>{{ $dt->tanggal_masuk }}</td>
+
                                         <td>
-                                            <a class="btn btn-info btn-sm text-sm"
-                                                href="{{ url('/detail-barang/' . $dt->id) }}">Detail</a>
-                                            <a class="btn btn-warning btn-sm text-sm"
+                                            <a class="btn btn-success btn-sm text-sm"
+                                                href="{{ url('/daftar-detail/' . $dt->kode_surat) }}">Detail</a>
+                                            {{-- <a class="btn btn-warning btn-sm text-sm"
                                                 href="{{ url('/edit-barang/' . $dt->id) }}">Edit</a>
                                             <a class="btn btn-danger btn-sm"
-                                                href="{{ url('/hapus-barang/' . $dt->id) }}">Hapus</a>
+                                                href="{{ url('/hapus-barang/' . $dt->id) }}">Hapus</a> --}}
                                         </td>
                                     </tr>
                                 @endforeach

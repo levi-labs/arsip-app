@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\BarangController;
+use App\Http\Controllers\BarangMasukController;
 use App\Http\Controllers\CabangController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\KategoriController;
@@ -55,3 +56,17 @@ Route::get('/detail-barang/{barang}', [BarangController::class, 'show']);
 Route::get('/edit-barang/{barang}', [BarangController::class, 'edit']);
 Route::post('/update-barang/{barang}', [BarangController::class, 'update']);
 Route::get('/hapus-barang/{barang}', [BarangController::class, 'destroy']);
+
+//Barang Masuk
+
+Route::controller(BarangMasukController::class)->group(function () {
+    Route::get('/barang-masuk', 'index');
+    Route::get('/daftar-detail/{params}', 'listDetailItem');
+    Route::get('/pilih-sumber-barang', 'createCabangOrSupplier');
+    Route::get('/tambah-barang-masuk', 'create');
+    Route::post('/post-barang-masuk', 'store');
+    Route::get('/detail-barang-masuk/{barangMasuk}', 'show');
+    Route::get('/edit-barang-masuk/{barangMasuk}', 'edit');
+    Route::post('/update-barang-masuk/{barangMasuk}', 'update');
+    Route::get('/hapus-barang-masuk/{barangMasuk}', 'destroy');
+});
