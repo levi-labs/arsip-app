@@ -1516,10 +1516,10 @@ p.text-muted {
           align-items: center;
 }
 .b-brand .b-bg {
-  background: linear-gradient(-135deg, #1de9b6 0%, #1dc4e9 100%);
-  border-radius: 10px;
+  /* background: linear-gradient(-135deg, #1de9b6 0%, #1dc4e9 100%); */
+  /* border-radius: 10px;
   width: 35px;
-  height: 35px;
+  height: 35px; */
   display: -webkit-inline-box;
   display: -ms-inline-flexbox;
   display: inline-flex;
@@ -1534,10 +1534,10 @@ p.text-muted {
   color: #fff;
 }
 .b-brand .b-title {
-  margin-left: 10px;
-  font-weight: 100;
+  margin-left: 5px;
+  font-weight: 50;
   color: #fff;
-  font-size: 18px;
+  font-size: 14px !important;
 }
 
 .navbar-collapsed .b-brand .b-title {

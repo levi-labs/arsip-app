@@ -1,11 +1,15 @@
 <?php
 
+use App\Http\Controllers\ArsipMasukController;
 use App\Http\Controllers\BarangController;
+use App\Http\Controllers\BarangKeluarController;
 use App\Http\Controllers\BarangMasukController;
 use App\Http\Controllers\CabangController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\KategoriController;
 use App\Http\Controllers\SupplierController;
+use App\Http\Controllers\UserController;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -18,6 +22,7 @@ use Illuminate\Support\Facades\Route;
 | be assigned to the "web" middleware group. Make something great!
 |
 */
+
 
 Route::get('/', function () {
     return view('layouts.main');
@@ -58,7 +63,6 @@ Route::post('/update-barang/{barang}', [BarangController::class, 'update']);
 Route::get('/hapus-barang/{barang}', [BarangController::class, 'destroy']);
 
 //Barang Masuk
-
 Route::controller(BarangMasukController::class)->group(function () {
     Route::get('/barang-masuk', 'index');
     Route::get('/daftar-detail/{params}', 'listDetailItem');
@@ -70,3 +74,28 @@ Route::controller(BarangMasukController::class)->group(function () {
     Route::post('/update-barang-masuk/{barangMasuk}', 'update');
     Route::get('/hapus-barang-masuk/{barangMasuk}', 'destroy');
 });
+
+Route::controller(ArsipMasukController::class)->group(function () {
+    Route::get('arsip-masuk', 'index');
+    Route::post('arsip-masuk', 'index');
+    Route::post('post-arsip-masuk', 'store');
+    Route::get('detail-arsip-masuk/{barangMasuk}', 'detailArsip');
+});
+
+//Barang Keluar
+Route::controller(BarangKeluarController::class)->group(function () {
+    Route::get('/barang-keluar', 'index');
+    Route::get('/tambah-barang-keluar', 'create');
+    Route::post('/post-barang-keluar', 'store');
+    Route::get('/edit-barang-keluar/{barangKeluar}', 'edit');
+    Route::post('/update-barang-keluar/{barangKeluar}', 'update');
+    Route::get('/hapus-barang-keluar/{barangKeluar}', 'destroy');
+});
+
+//Users Management
+
+Route::controller(UserController::class)->group(function () {
+});
+Auth::routes();
+
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');

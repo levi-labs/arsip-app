@@ -44,11 +44,11 @@
     <header class="navbar pcoded-header navbar-expand-lg navbar-light">
         <div class="m-header">
             <a class="mobile-menu" id="mobile-collapse1" href="javascript:"><span></span></a>
-            <a href="index.html" class="b-brand">
+            <a href="/dashboard" class="b-brand">
                 <div class="b-bg">
                     <i class="feather icon-trending-up"></i>
                 </div>
-                <span class="b-title">Datta Able</span>
+                <span class="b-title"></span>
             </a>
         </div>
         <a class="mobile-menu" id="mobile-header" href="javascript:">

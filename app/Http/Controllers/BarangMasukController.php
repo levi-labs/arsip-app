@@ -341,6 +341,7 @@ class BarangMasukController extends Controller
             $barang->update();
             $data->delete();
             DB::commit();
+
             $count      = BarangMasuk::where('kode_surat', $params)->count();
 
             if ($count > 0) {

@@ -1,11 +1,28 @@
 <nav class="pcoded-navbar">
     <div class="navbar-wrapper">
-        <div class="navbar-brand header-logo">
-            <a href="index.html" class="b-brand">
-                <div class="b-bg">
+        <style>
+            .title-tirta {
+                font-size: 14px !important;
+            }
+
+            .b-bg .b-img {
+                width: 40% !important;
+            }
+        </style>
+        <div class="title-tirta b-brand text-center">
+
+
+            <a href="/dashboard" class="">
+                {{-- <div class="b-bg">
                     <i class="feather icon-trending-up"></i>
+                </div> --}}
+                <div class="b-bg">
+                    <img class="b-img" src="{{ asset('/assets/images/logotirta.png') }}" alt="" width="30%">
                 </div>
-                <span class="b-title">Datta Able</span>
+                <div class="text-center">
+                    <span class="b-title">Tirta Multi Bangunan</span>
+                </div>
+
             </a>
             <a class="mobile-menu" id="mobile-collapse" href="javascript:"><span></span></a>
         </div>
@@ -29,7 +46,7 @@
                         <li class=""><a href="{{ url('/kategori') }}" class="">Kategori</a></li>
                         <li class=""><a href="{{ url('/barang') }}" class="">Barang</a></li>
                         <li class=""><a href="{{ url('/barang-masuk') }}" class="">Barang Masuk</a></li>
-                        <li class=""><a href="bc_breadcrumb-pagination.html" class="">Breadcrumb &
+                        {{-- <li class=""><a href="bc_breadcrumb-pagination.html" class="">Breadcrumb &
                                 paggination</a></li>
                         <li class=""><a href="bc_collapse.html" class="">Collapse</a></li>
                         <li class=""><a href="bc_tabs.html" class="">Tabs & pills</a></li>
@@ -37,7 +54,7 @@
 
 
                         <li class=""><a href="icon-feather.html" class="">Feather<span
-                                    class="pcoded-badge label label-danger">NEW</span></a></li>
+                                    class="pcoded-badge label label-danger">NEW</span></a></li> --}}
                     </ul>
                 </li>
                 <li class="nav-item pcoded-menu-caption">
@@ -52,7 +69,7 @@
                     <a href="{{ url('/cabang') }}" class="nav-link "><span class="pcoded-micon"><i
                                 class="feather icon-server"></i></span><span class="pcoded-mtext">Cabang</span></a>
                 </li>
-                <li class="nav-item pcoded-menu-caption">
+                {{-- <li class="nav-item pcoded-menu-caption">
                     <label>Chart & Maps</label>
                 </li>
                 <li data-username="Charts Morris" class="nav-item"><a href="chart-morris.html" class="nav-link "><span
@@ -63,27 +80,55 @@
                             class="pcoded-mtext">Maps</span></a></li>
                 <li class="nav-item pcoded-menu-caption">
                     <label>Pages</label>
+                </li> --}}
+                <li class="nav-item pcoded-menu-caption">
+                    <label>Arsip Masuk & Keluar</label>
                 </li>
-                <li data-username="Authentication Sign up Sign in reset password Change password Personal information profile settings map form subscribe"
-                    class="nav-item pcoded-hasmenu">
-                    <a href="javascript:" class="nav-link "><span class="pcoded-micon"><i
-                                class="feather icon-lock"></i></span><span
-                            class="pcoded-mtext">Authentication</span></a>
-                    <ul class="pcoded-submenu">
-                        <li class=""><a href="auth-signup.html" class="" target="_blank">Sign up</a>
-                        </li>
-                        <li class=""><a href="auth-signin.html" class="" target="_blank">Sign in</a>
-                        </li>
-                    </ul>
+                <li data-username="form elements advance componant validation masking wizard picker select"
+                    class="nav-item">
+                    <a href="{{ url('/arsip-masuk') }}" class="nav-link "><span class="pcoded-micon"><i
+                                class="feather icon-arrow-down"></i></span><span class="pcoded-mtext">Arsip
+                            Masuk</span></a>
                 </li>
-                <li data-username="Sample Page" class="nav-item"><a href="sample-page.html" class="nav-link"><span
+                <li data-username="form elements advance componant validation masking wizard picker select"
+                    class="nav-item">
+                    <a href="{{ url('/arsip-masuk') }}" class="nav-link "><span class="pcoded-micon"><i
+                                class="feather icon-arrow-up"></i></span><span class="pcoded-mtext">Arsip
+                            Keluar</span></a>
+                </li>
+
+                <li class="nav-item pcoded-menu-caption">
+                    <label>User Management</label>
+                </li>
+                <li data-username="form elements advance componant validation masking wizard picker select"
+                    class="nav-item">
+                    <a href="{{ url('/users') }}" class="nav-link "><span class="pcoded-micon"><i
+                                class="feather icon-users"></i></span><span class="pcoded-mtext">Daftar User</span></a>
+                </li>
+                <li class="nav-item pcoded-menu-caption">
+                    <label>Report</label>
+                </li>
+                <li data-username="form elements advance componant validation masking wizard picker select"
+                    class="nav-item">
+                    <a href="{{ url('/reports') }}" class="nav-link "><span class="pcoded-micon"><i
+                                class="feather icon-trending-down"></i></span><span class="pcoded-mtext">Report
+                            Masuk</span></a>
+                </li>
+                <li data-username="form elements advance componant validation masking wizard picker select"
+                    class="nav-item">
+                    <a href="{{ url('/reports') }}" class="nav-link "><span class="pcoded-micon"><i
+                                class="feather icon-trending-up"></i></span><span class="pcoded-mtext">Report
+                            Keluar</span></a>
+                </li>
+
+                {{-- <li data-username="Sample Page" class="nav-item"><a href="sample-page.html" class="nav-link"><span
                             class="pcoded-micon"><i class="feather icon-sidebar"></i></span><span
                             class="pcoded-mtext">Sample
                             page</span></a></li>
-                <li data-username="Disabled Menu" class="nav-item disabled"><a href="javascript:"
-                        class="nav-link"><span class="pcoded-micon"><i class="feather icon-power"></i></span><span
+                <li data-username="Disabled Menu" class="nav-item disabled"><a href="javascript:" class="nav-link"><span
+                            class="pcoded-micon"><i class="feather icon-power"></i></span><span
                             class="pcoded-mtext">Disabled
-                            menu</span></a></li>
+                            menu</span></a></li> --}}
             </ul>
         </div>
     </div>
