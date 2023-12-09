@@ -1,9 +1,6 @@
 <img class="my-logo" width="90" height="90" src="{{ asset('assets/images/logotirta.png') }}" alt="">
 <center>
-    <table class="my-kop" width="680">
-
-
-
+    <table class="my-kop" width="500">
         <tr class="text-center">
 
             <center>
@@ -25,5 +22,4 @@
     <hr style="border-top: 2px solid black;">
     <hr style="border-top: 2px solid black; margin-top:-7px;">
     <br>
-
 </center>

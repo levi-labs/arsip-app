@@ -36,7 +36,7 @@
         .my-logo {
             position: absolute;
             float: right;
-            margin-left: 10%;
+            margin-left: 5%;
         }
 
         .the-kop {
