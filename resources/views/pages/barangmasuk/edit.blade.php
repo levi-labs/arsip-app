@@ -73,15 +73,14 @@
                                     @enderror
                                 </div>
 
-                                <button type="submit" class="btn btn-primary">Submit</button>
+
 
                         </div>
                         <div class="col-md-6">
 
                             <div class="form-group">
-                                <label>Kode Surat Jalan <span class="text-sm text-danger"> | 7 digit terakhir surat jalan (
-                                        3150OUT)</span></label>
-                                <input type="text" class="form-control" placeholder="Text" name="kode_surat"
+                                <label>Kode Surat Jalan </label>
+                                <input type="text" class="form-control" placeholder="Text" name="kode_surat" readonly
                                     value="{{ $data->kode_surat }}">
                                 @error('kode_surat')
                                     <span class="text-danger text-sm">{{ $message }}</span>
@@ -125,6 +124,15 @@
                                 @error('tanggal_masuk')
                                     <span class="text-danger text-sm">{{ $message }}</span>
                                 @enderror
+                            </div>
+                            <div class="row justify-content-between mt-3">
+                                <div class="col-md-12 text-right">
+                                    <button type="button" class="btn btn-warning"
+                                        onclick="window.location.href='/daftar-detail/{{ $data->kode_surat }}' ">Daftar
+                                        Detail Barang
+                                        Masuk</button>
+                                    <button type="submit" class="btn btn-primary">Submit</button>
+                                </div>
                             </div>
 
                             </form>

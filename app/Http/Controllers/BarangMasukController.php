@@ -61,7 +61,6 @@ class BarangMasukController extends Controller
         $title              =  'Form Tambah Barang Masuk';
         $barang             = Barang::all();
 
-
         $kodeBarangMasuk    = new BarangMasuk();
         $sumber             = strtolower($request->input('sumber'));
 
@@ -156,13 +155,20 @@ class BarangMasukController extends Controller
         ]);
 
 
+
         DB::beginTransaction();
 
         try {
             $barangMasuk                    = new BarangMasuk();
             $barangMasuk->kode_barang_masuk = $request->kode_barang_masuk;
             $barangMasuk->kategori_sumber   = $request->kategori_sumber;
-            $barangMasuk->kode_surat        = $request->kode_surat;
+
+            if ($request->kategori_sumber == 'Supplier') {
+                $barangMasuk->kode_surat    = $request->kode_surat . '-' . $barangMasuk->getCounterKodeSupplierMasuk();
+            } else {
+                $barangMasuk->kode_surat        = $request->kode_surat;
+            }
+
             $barangMasuk->barang_id         = $request->barang;
             $barangMasuk->sumber_barang     = $request->sumber_barang;
             $barangMasuk->qty_masuk         = $request->qty_masuk;
@@ -189,7 +195,7 @@ class BarangMasukController extends Controller
 
             DB::commit();
 
-            session()->put('surat', $request->kode_surat);
+            session()->put('surat',  $barangMasuk->kode_surat);
 
 
             // return redirect('barang-masuk')->with('success', 'Barang Masuk added successfully...');

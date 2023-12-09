@@ -56,18 +56,18 @@
         </a>
         <div class="collapse navbar-collapse">
             <ul class="navbar-nav mr-auto">
-                <li><a href="javascript:" class="full-screen" onclick="javascript:toggleFullScreen()"><i
-                            class="feather icon-maximize"></i></a></li>
-                <li class="nav-item dropdown">
+                {{-- <li><a href="javascript:" class="full-screen" onclick="javascript:toggleFullScreen()"><i
+                            class="feather icon-maximize"></i></a></li> --}}
+                {{-- <li class="nav-item dropdown">
                     <a class="dropdown-toggle" href="javascript:" data-toggle="dropdown">Dropdown</a>
                     <ul class="dropdown-menu">
                         <li><a class="dropdown-item" href="javascript:">Action</a></li>
                         <li><a class="dropdown-item" href="javascript:">Another action</a></li>
                         <li><a class="dropdown-item" href="javascript:">Something else here</a></li>
                     </ul>
-                </li>
+                </li> --}}
                 <li class="nav-item">
-                    <div class="main-search">
+                    {{-- <div class="main-search">
                         <div class="input-group">
                             <input type="text" id="m-search" class="form-control" placeholder="Search . . .">
                             <a href="javascript:" class="input-group-append search-close">
@@ -77,12 +77,12 @@
                                 <i class="feather icon-search input-group-text"></i>
                             </span>
                         </div>
-                    </div>
+                    </div> --}}
                 </li>
             </ul>
             <ul class="navbar-nav ml-auto">
                 <li>
-                    <div class="dropdown">
+                    {{-- <div class="dropdown">
                         <a class="dropdown-toggle" href="javascript:" data-toggle="dropdown"><i
                                 class="icon feather icon-bell"></i></a>
                         <div class="dropdown-menu dropdown-menu-right notification">
@@ -138,7 +138,7 @@
                                 <a href="javascript:">show all</a>
                             </div>
                         </div>
-                    </div>
+                    </div> --}}
                 </li>
                 <li>
                     <div class="dropdown drp-user">
@@ -150,19 +150,17 @@
                                 <img src="{{ asset('assets/images/user/avatar-1.jpg') }}" class="img-radius"
                                     alt="User-Profile-Image">
                                 <span>John Doe</span>
-                                <a href="auth-signin.html" class="dud-logout" title="Logout">
+                                <a href="/sign-out" class="dud-logout" title="Sign-Out">
                                     <i class="feather icon-log-out"></i>
                                 </a>
                             </div>
                             <ul class="pro-body">
-                                <li><a href="javascript:" class="dropdown-item"><i class="feather icon-settings"></i>
-                                        Settings</a></li>
-                                <li><a href="javascript:" class="dropdown-item"><i class="feather icon-user"></i>
+                                <li><a href="/profile" class="dropdown-item"><i class="feather icon-user"></i>
                                         Profile</a></li>
-                                <li><a href="message.html" class="dropdown-item"><i class="feather icon-mail"></i> My
-                                        Messages</a></li>
-                                <li><a href="auth-signin.html" class="dropdown-item"><i
-                                            class="feather icon-lock"></i> Lock Screen</a></li>
+                                <li><a href="auth-signin.html" class="/ubah-password"><i class="feather icon-lock"></i>
+                                        Ubah Password</a></li>
+                                <li><a href="sign-out" class="dropdown-item"><i class="feather icon-log-out"></i> Sign
+                                        Out</a></li>
                             </ul>
                         </div>
                     </div>

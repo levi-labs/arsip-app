@@ -90,8 +90,7 @@
                         <div class="col-md-6">
 
                             <div class="form-group">
-                                <label>Kode Surat Jalan <span class="text-sm text-danger"> | 7 digit terakhir surat jalan (
-                                        3150OUT)</span></label>
+                                <label>Kode Surat Jalan</label>
                                 @if (session()->get('surat'))
                                     <input type="text" class="form-control" placeholder="Text" name="kode_surat"
                                         value="{{ session()->get('surat') }}" readonly>

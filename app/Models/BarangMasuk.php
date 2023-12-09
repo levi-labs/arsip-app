@@ -34,9 +34,28 @@ class BarangMasuk extends Model
         } else {
             $last       = $this->all()->last();
             $sequence   = (int)substr($last->kode_barang_masuk, -5) + 1;
+
             $number     = 'BRM-' . sprintf('%05s', $sequence);
         }
 
+        return $number;
+    }
+
+    public function getCounterKodeSupplierMasuk()
+    {
+        $supplier_masuk = BarangMasuk::where('kategori_sumber', 'Supplier')->count();
+
+        if ($supplier_masuk == 0) {
+            $counter    = 00001;
+            $number     = sprintf('%05s' . $counter);
+        } else {
+            $last       = BarangMasuk::select('kode_surat')->where('kategori_sumber', 'Supplier')
+                ->groupBy('kode_surat')
+                ->orderBy('kode_surat', 'desc')
+                ->first();
+            $sequence   = (int)substr($last->kode_surat, -5) + 1;
+            $number     = sprintf('%05s', $sequence);
+        }
         return $number;
     }
 }

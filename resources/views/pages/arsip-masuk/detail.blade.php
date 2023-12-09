@@ -92,7 +92,7 @@
                                     <tr class="text-center">
                                         <th scope="row">{{ $loop->iteration }}</th>
                                         <td>{{ $dt->kode_barang_masuk }}</td>
-                                        <td>{{ $dt->barang_id }}</td>
+                                        <td>{{ $dt->barangs->nama }}</td>
                                         <td>{{ $dt->qty_masuk }}</td>
                                         <td>{{ $dt->qty_rusak }}</td>
                                         <td>{{ $dt->qty_diterima }}</td>
@@ -105,9 +105,7 @@
 
                                     </tr>
                                 @endforeach
-                                @php
-                                    // $total = \App\Models\BarangMasuk::where('kode_surat', $kopTanggal->kode_surat)->sum('');
-                                @endphp
+
                                 <tr>
                                     <th class="text-right" colspan="8">Total :</th>
                                     <td class="text-center">@currency($total)</td>

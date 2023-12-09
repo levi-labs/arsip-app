@@ -1,5 +1,5 @@
 <nav class="pcoded-navbar">
-    <div class="navbar-wrapper">
+    <div class="navbar-wrapper d-print-none">
         <style>
             .title-tirta {
                 font-size: 14px !important;
@@ -11,7 +11,6 @@
         </style>
         <div class="title-tirta b-brand text-center">
 
-
             <a href="/dashboard" class="">
                 {{-- <div class="b-bg">
                     <i class="feather icon-trending-up"></i>
@@ -22,7 +21,6 @@
                 <div class="text-center">
                     <span class="b-title">Tirta Multi Bangunan</span>
                 </div>
-
             </a>
             <a class="mobile-menu" id="mobile-collapse" href="javascript:"><span></span></a>
         </div>
@@ -110,25 +108,17 @@
                 </li>
                 <li data-username="form elements advance componant validation masking wizard picker select"
                     class="nav-item">
-                    <a href="{{ url('/reports') }}" class="nav-link "><span class="pcoded-micon"><i
+                    <a href="{{ url('/report-masuk') }}" class="nav-link "><span class="pcoded-micon"><i
                                 class="feather icon-trending-down"></i></span><span class="pcoded-mtext">Report
                             Masuk</span></a>
                 </li>
                 <li data-username="form elements advance componant validation masking wizard picker select"
                     class="nav-item">
-                    <a href="{{ url('/reports') }}" class="nav-link "><span class="pcoded-micon"><i
+                    <a href="{{ url('/report-keluar') }}" class="nav-link "><span class="pcoded-micon"><i
                                 class="feather icon-trending-up"></i></span><span class="pcoded-mtext">Report
                             Keluar</span></a>
                 </li>
 
-                {{-- <li data-username="Sample Page" class="nav-item"><a href="sample-page.html" class="nav-link"><span
-                            class="pcoded-micon"><i class="feather icon-sidebar"></i></span><span
-                            class="pcoded-mtext">Sample
-                            page</span></a></li>
-                <li data-username="Disabled Menu" class="nav-item disabled"><a href="javascript:" class="nav-link"><span
-                            class="pcoded-micon"><i class="feather icon-power"></i></span><span
-                            class="pcoded-mtext">Disabled
-                            menu</span></a></li> --}}
             </ul>
         </div>
     </div>

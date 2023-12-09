@@ -7,6 +7,7 @@ use App\Http\Controllers\BarangMasukController;
 use App\Http\Controllers\CabangController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\KategoriController;
+use App\Http\Controllers\ReportController;
 use App\Http\Controllers\SupplierController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Auth;
@@ -75,6 +76,19 @@ Route::controller(BarangMasukController::class)->group(function () {
     Route::get('/hapus-barang-masuk/{barangMasuk}', 'destroy');
 });
 
+//Barang Keluar
+Route::controller(BarangKeluarController::class)->group(function () {
+    Route::get('/barang-keluar', 'index');
+    Route::get('/daftar-detail/{params}', 'listDetailItem');
+    Route::get('/pilih-tujuan-barang/{params}', 'createCabangOrCustomer');
+    Route::get('/tambah-barang-keluar', 'create');
+    Route::post('/post-barang-keluar', 'store');
+    Route::get('/detail-barang-keluar/{barangKeluar}', 'show');
+    Route::get('/edit-barang-keluar/{barangKeluar}', 'edit');
+    Route::post('/update-barang-keluar/{barangKeluar}', 'update');
+    Route::get('/hapus-barang-keluar/{barangKeluar}', 'destroy');
+});
+
 Route::controller(ArsipMasukController::class)->group(function () {
     Route::get('arsip-masuk', 'index');
     Route::post('arsip-masuk', 'index');
@@ -82,20 +96,35 @@ Route::controller(ArsipMasukController::class)->group(function () {
     Route::get('detail-arsip-masuk/{barangMasuk}', 'detailArsip');
 });
 
-//Barang Keluar
-Route::controller(BarangKeluarController::class)->group(function () {
-    Route::get('/barang-keluar', 'index');
-    Route::get('/tambah-barang-keluar', 'create');
-    Route::post('/post-barang-keluar', 'store');
-    Route::get('/edit-barang-keluar/{barangKeluar}', 'edit');
-    Route::post('/update-barang-keluar/{barangKeluar}', 'update');
-    Route::get('/hapus-barang-keluar/{barangKeluar}', 'destroy');
+Route::controller(ArsipMasukController::class)->group(function () {
+    Route::get('arsip-keluar', 'index');
+    Route::post('arsip-keluar', 'index');
+    Route::post('post-arsip-keluar', 'store');
+    Route::get('detail-arsip-masuk/{barangMasuk}', 'detailArsip');
 });
 
 //Users Management
 
 Route::controller(UserController::class)->group(function () {
+    Route::get('/daftar-user', 'index');
+    Route::get('/daftar-user', 'create');
+    Route::post('/daftar-user', 'store');
+    Route::get('/daftar-user/{user}', 'edit');
+    Route::post('/daftar-user/{user}', 'update');
+    Route::get('/daftar-user/{user}', 'destroy');
+    Route::get('/reset-password/{user}', 'resetPassword');
+    Route::get('/ubah-password', 'editPassword');
+    Route::post('/ubah-password', 'updatePassword');
 });
+
+Route::controller(ReportController::class)->group(function () {
+    Route::get('/report-masuk', 'formReportMasuk');
+    Route::post('/post-report-masuk', 'sendReportMasuk');
+    Route::get('/report-keluar', 'formReportKeluar');
+    Route::post('/post-report-keluar', 'sendReportKeluar');
+});
+
+
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');

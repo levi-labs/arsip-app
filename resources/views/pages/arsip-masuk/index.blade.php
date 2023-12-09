@@ -7,7 +7,7 @@
                     <h5>PT.ABC</h5>
                 </div>
                 <div class="card-body">
-                    <h5>{{ $title }}</h5>
+                    <h5>{{ $titleForm }}</h5>
                     <hr>
                     <div class="row justify-content-center">
                         <div class="col-md-6">
@@ -76,7 +76,11 @@
                                         <th scope="row">1</th>
                                         <td>{{ $data->kode_surat }}</td>
                                         <td>{{ $data->tanggal_masuk }}</td>
-
+                                        <td>
+                                            <a class="btn btn-success btn-sm text-sm"
+                                                href="{{ url('/detail-arsip-masuk/' . $data->kode_surat) }}">Detail
+                                            </a>
+                                        </td>
 
                                     </tr>
 
@@ -109,18 +113,13 @@
                                             <th scope="row">{{ $loop->iteration }}</th>
                                             <td>{{ $dt->kode_surat }}</td>
                                             <td>{{ $dt->tanggal_masuk }}</td>
-
                                             <td>
                                                 <a class="btn btn-success btn-sm text-sm"
-                                                    href="{{ url('/detail-arsip-masuk/' . $dt->kode_surat) }}">Detail</a>
-                                                {{-- <a class="btn btn-warning btn-sm text-sm"
-                                                    href="{{ url('/edit-barang/' . $dt->id) }}">Edit</a>
-                                                <a class="btn btn-danger btn-sm"
-                                                    href="{{ url('/hapus-barang/' . $dt->id) }}">Hapus</a> --}}
+                                                    href="{{ url('/detail-arsip-masuk/' . $dt->kode_surat) }}">Detail
+                                                </a>
                                             </td>
                                         </tr>
                                     @endforeach
-
                                 </tbody>
                             </table>
                             <div class="row text-right">
