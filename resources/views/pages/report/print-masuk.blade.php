@@ -13,7 +13,7 @@
         <table class="table table-bordered d-print-table" style="border-collapse: collapse; border: 2px solid black;"
             border="2">
             <thead>
-                <tr>
+                <tr class="text-center">
                     <th style="background-color: rgb(158, 198, 251)" class="text-center top-th" rowspan="2">
                         No
                     </th>
@@ -56,7 +56,7 @@
                 @endphp
 
                 @foreach ($result['data'] as $dt)
-                    <tr>
+                    <tr class="text-center">
                         <td>{{ $loop->iteration }}</td>
                         <td>{{ $dt->kode_barang_masuk }}</td>
                         <td>{{ $dt->barangs->nama }}</td>
@@ -79,7 +79,7 @@
                     }
                 </style>
                 <tr>
-                    <th class="text-right" colspan="8">Total </th>
+                    <td class="text-right" colspan="8">Total </td>
                     <td class="text-center">@currency($total)</td>
                 </tr>
             </tbody>
@@ -102,7 +102,7 @@
                     {{-- <b>Bekasi,<br>{{ \Carbon\Carbon::now()->isoFormat('D MMMM Y') }}</b><br> --}}
                     <br>
                     <br><br><br>
-                    <p>Diperiksa</p>,
+                    <p>Dikirim</p>,
                     <br><br><br>
                     <br>
 
@@ -112,7 +112,7 @@
                 <td style="text-align: center">
                     <b>Bekasi,<br><br>{{ \Carbon\Carbon::now()->isoFormat('D MMMM Y') }}</b><br>
                     <br><br>
-                    <p>Disetujui</p>,
+                    <p>Diterima</p>,
                     <br><br><br>
                     <br>
 
@@ -120,7 +120,5 @@
                 </td>
             </tr>
         </table>
-
-
     </div>
 @endsection

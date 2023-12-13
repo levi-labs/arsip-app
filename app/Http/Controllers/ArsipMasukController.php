@@ -145,15 +145,6 @@ class ArsipMasukController extends Controller
                 'sumber_dari'   => $sumber_dari
             ]);
         }
-        // return view('pages.arsip-masuk.detail', [
-        //     'title'         => $title,
-        //     'data'          => $data,
-        //     'kopTitle'      => $kopTitle,
-        //     'kopAlamat'     => $kopAlamat,
-        //     'kopTelp'       => $kopTelp,
-        //     'kopTanggal'    => $kopTanggal,
-        //     'sumber_dari'   => $sumber_dari
-        // ]);
     }
     public function show($barangmasuk)
     {

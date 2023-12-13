@@ -11,15 +11,15 @@
                     <hr>
                     <div class="row justify-content-center">
                         <div class="col-md-12">
-                            <form method="GET" action="{{ url('/tambah-barang-masuk') }}">
+                            <form method="GET" action="{{ url('/tambah-barang-keluar') }}">
                                 @csrf
                                 <div class="form-group">
-                                    <label for="exampleFormControlSelect1">Cabang / Supplier</label>
-                                    <select class="form-control" id="exampleFormControlSelect1" name="sumber">
+                                    <label for="exampleFormControlSelect1">Cabang / Customer</label>
+                                    <select class="form-control" id="exampleFormControlSelect1" name="tujuan">
 
                                         <option selected disabled>Pilih</option>
                                         <option>Cabang</option>
-                                        <option>Supplier</option>
+                                        <option>Customer</option>
 
                                     </select>
                                 </div>

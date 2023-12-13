@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\BarangKeluar;
 use App\Models\BarangMasuk;
 use Illuminate\Http\Request;
 
@@ -12,6 +13,13 @@ class ReportController extends Controller
         $title          = 'Form Report Masuk Barang';
 
         return view('pages.report.report-masuk', ['title' => $title]);
+    }
+
+    public function formReportKeluar(Request $request)
+    {
+        $title          = 'Form Report Keluar';
+
+        return view('pages.report.report-keluar', ['title' => $title]);
     }
 
     public function rangeDateReport($data, $input_from = null, $input_to = null)
@@ -72,6 +80,18 @@ class ReportController extends Controller
 
         return view('pages.report.print-masuk', ['result' => $result]);
     }
+
+    public function sendReportKeluar(Request $request)
+    {
+        $barangMasuk = new BarangKeluar();
+        $input_from     = $request->input_from;
+        $input_to       = $request->input_to;
+
+        $result     = $this->rangeDateReport($barangMasuk, $input_from, $input_to);
+
+        return view('pages.report.print-keluar', ['result' => $result]);
+    }
+
     public function sendReportMasuks(Request $request)
     {
 

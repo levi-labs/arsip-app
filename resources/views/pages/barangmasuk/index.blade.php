@@ -35,7 +35,7 @@
 
                                         <td>
                                             <a class="btn btn-success btn-sm text-sm"
-                                                href="{{ url('/daftar-detail/' . $dt->kode_surat) }}">Detail</a>
+                                                href="{{ url('/daftar-detail-barang-masuk/' . $dt->kode_surat) }}">Detail</a>
                                             {{-- <a class="btn btn-warning btn-sm text-sm"
                                                 href="{{ url('/edit-barang/' . $dt->id) }}">Edit</a>
                                             <a class="btn btn-danger btn-sm"

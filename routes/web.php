@@ -66,7 +66,7 @@ Route::get('/hapus-barang/{barang}', [BarangController::class, 'destroy']);
 //Barang Masuk
 Route::controller(BarangMasukController::class)->group(function () {
     Route::get('/barang-masuk', 'index');
-    Route::get('/daftar-detail/{params}', 'listDetailItem');
+    Route::get('/daftar-detail-barang-masuk/{params}', 'listDetailItem');
     Route::get('/pilih-sumber-barang', 'createCabangOrSupplier');
     Route::get('/tambah-barang-masuk', 'create');
     Route::post('/post-barang-masuk', 'store');
@@ -79,8 +79,8 @@ Route::controller(BarangMasukController::class)->group(function () {
 //Barang Keluar
 Route::controller(BarangKeluarController::class)->group(function () {
     Route::get('/barang-keluar', 'index');
-    Route::get('/daftar-detail/{params}', 'listDetailItem');
-    Route::get('/pilih-tujuan-barang/{params}', 'createCabangOrCustomer');
+    Route::get('/daftar-detail-barang-keluar/{params}', 'listDetailItem');
+    Route::get('/pilih-tujuan-barang', 'createCabangOrCustomer');
     Route::get('/tambah-barang-keluar', 'create');
     Route::post('/post-barang-keluar', 'store');
     Route::get('/detail-barang-keluar/{barangKeluar}', 'show');

@@ -320,7 +320,7 @@ class BarangMasukController extends Controller
 
             // return redirect('barang-masuk')->with('success', 'Barang Masuk added successfully...');
 
-            return redirect('/daftar-detail/' . $params)->with('success', 'Barang Masuk updated successfully...');
+            return redirect('/daftar-detail-barang-masuk/' . $params)->with('success', 'Barang Masuk updated successfully...');
         } catch (\Exception $e) {
 
             DB::rollBack();
@@ -352,7 +352,7 @@ class BarangMasukController extends Controller
 
             if ($count > 0) {
 
-                return redirect('daftar-detail/' . $params)->with('success', 'Barang Masuk delete successfully...');
+                return redirect('daftar-detail-barang-masuk/' . $params)->with('success', 'Barang Masuk delete successfully...');
             } elseif ($count == 0) {
 
                 return redirect('/barang-masuk')->with('success', 'Semua Barang Masuk delete successfully...');

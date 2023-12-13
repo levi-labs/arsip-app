@@ -12,7 +12,7 @@
 
                 </div>
                 <div class="col-sm-4">
-                    <a class="btn btn-primary my-1" href="{{ url('/pilih-sumber-barang') }}">Tambah</a>
+                    <a class="btn btn-primary my-1" href="{{ url('/pilih-tujuan-barang') }}">Tambah</a>
                 </div>
                 <div class="card-block table-border-style">
 

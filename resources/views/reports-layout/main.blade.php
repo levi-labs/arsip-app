@@ -83,6 +83,12 @@
         .my-kop {
             text-align: center;
         }
+
+        .text-center {
+            text-align: center;
+            margin: 0;
+            padding: 0;
+        }
     </style>
 </head>
 

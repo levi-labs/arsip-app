@@ -44,6 +44,7 @@
                         <li class=""><a href="{{ url('/kategori') }}" class="">Kategori</a></li>
                         <li class=""><a href="{{ url('/barang') }}" class="">Barang</a></li>
                         <li class=""><a href="{{ url('/barang-masuk') }}" class="">Barang Masuk</a></li>
+                        <li class=""><a href="{{ url('/barang-keluar') }}" class="">Barang Keluar</a></li>
                         {{-- <li class=""><a href="bc_breadcrumb-pagination.html" class="">Breadcrumb &
                                 paggination</a></li>
                         <li class=""><a href="bc_collapse.html" class="">Collapse</a></li>
@@ -67,18 +68,8 @@
                     <a href="{{ url('/cabang') }}" class="nav-link "><span class="pcoded-micon"><i
                                 class="feather icon-server"></i></span><span class="pcoded-mtext">Cabang</span></a>
                 </li>
-                {{-- <li class="nav-item pcoded-menu-caption">
-                    <label>Chart & Maps</label>
+
                 </li>
-                <li data-username="Charts Morris" class="nav-item"><a href="chart-morris.html" class="nav-link "><span
-                            class="pcoded-micon"><i class="feather icon-pie-chart"></i></span><span
-                            class="pcoded-mtext">Chart</span></a></li>
-                <li data-username="Maps Google" class="nav-item"><a href="map-google.html" class="nav-link "><span
-                            class="pcoded-micon"><i class="feather icon-map"></i></span><span
-                            class="pcoded-mtext">Maps</span></a></li>
-                <li class="nav-item pcoded-menu-caption">
-                    <label>Pages</label>
-                </li> --}}
                 <li class="nav-item pcoded-menu-caption">
                     <label>Arsip Masuk & Keluar</label>
                 </li>
