@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\ArsipKeluarController;
 use App\Http\Controllers\ArsipMasukController;
 use App\Http\Controllers\BarangController;
 use App\Http\Controllers\BarangKeluarController;
@@ -96,22 +97,22 @@ Route::controller(ArsipMasukController::class)->group(function () {
     Route::get('detail-arsip-masuk/{barangMasuk}', 'detailArsip');
 });
 
-Route::controller(ArsipMasukController::class)->group(function () {
+Route::controller(ArsipKeluarController::class)->group(function () {
     Route::get('arsip-keluar', 'index');
     Route::post('arsip-keluar', 'index');
     Route::post('post-arsip-keluar', 'store');
-    Route::get('detail-arsip-masuk/{barangMasuk}', 'detailArsip');
+    Route::get('detail-arsip-keluar/{barangMasuk}', 'detailArsip');
 });
 
 //Users Management
 
 Route::controller(UserController::class)->group(function () {
     Route::get('/daftar-user', 'index');
-    Route::get('/daftar-user', 'create');
-    Route::post('/daftar-user', 'store');
-    Route::get('/daftar-user/{user}', 'edit');
-    Route::post('/daftar-user/{user}', 'update');
-    Route::get('/daftar-user/{user}', 'destroy');
+    Route::get('/tambah-user', 'create');
+    Route::post('/post-user', 'store');
+    Route::get('/edit-user/{user}', 'edit');
+    Route::post('/update-user/{user}', 'update');
+    Route::get('/hapus-user/{user}', 'destroy');
     Route::get('/reset-password/{user}', 'resetPassword');
     Route::get('/ubah-password', 'editPassword');
     Route::post('/ubah-password', 'updatePassword');

@@ -11,7 +11,7 @@
                     <hr>
                     <div class="row justify-content-center">
                         <div class="col-md-6">
-                            <form method="POST" action="{{ url('/arsip-masuk') }}" autocomplete="off">
+                            <form method="POST" action="{{ url('/arsip-keluar') }}" autocomplete="off">
                                 @csrf
                                 <div class="form-group">
                                     <label for="exampleInputEmail1">Kode Surat</label>
@@ -75,9 +75,13 @@
                                     <tr class="text-center">
                                         <th scope="row">1</th>
                                         <td>{{ $data->kode_surat }}</td>
-                                        <td>{{ $data->tanggal_masuk }}</td>
+                                        <td>{{ $data->tanggal_keluar }}</td>
 
+                                        <td>
+                                            <a class="btn btn-success btn-sm text-sm"
+                                               href="{{ url('/detail-arsip-keluar/' . $data->kode_surat) }}">Detail</a>
 
+                                        </td>
                                     </tr>
 
 
@@ -108,7 +112,7 @@
                                         <tr class="text-center">
                                             <th scope="row">{{ $loop->iteration }}</th>
                                             <td>{{ $dt->kode_surat }}</td>
-                                            <td>{{ $dt->tanggal_masuk }}</td>
+                                            <td>{{ $dt->tanggal_keluar }}</td>
 
                                             <td>
                                                 <a class="btn btn-success btn-sm text-sm"

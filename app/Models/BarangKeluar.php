@@ -30,4 +30,13 @@ class BarangKeluar extends Model
 
         return $number;
     }
+
+    public function barangs(){
+        return $this->belongsTo(Barang::class , 'barang_id', 'id');
+    }
+    public function getImage()
+    {
+        return '/storage/' . $this->foto_surat;
+    }
+
 }

@@ -12,13 +12,13 @@ class BinarySearch extends Controller
         //batas kiri
         $left   = 0;
         //batas kanan
-        $right  = BarangMasuk::count() - 1;
+        $right  = count($arr) - 1;
 
         while ($left <= $right) {
             //panjang data di bagi 2, untuk menentukan titik tengah
             $middle             = floor(($left + $right) / 2);
 
-            /** 
+            /**
              * Membandingkan String/Kode Surat yang ada pada Index (dalam Databases),
              * tersebut sama tidak sama dengan yang di inputkan.
              */

@@ -29,6 +29,7 @@ class ArsipMasukController extends Controller
                 ->select('barang_masuk.kode_surat', 'barang_masuk.tanggal_masuk')
                 ->groupBy('kode_surat', 'tanggal_masuk')
                 ->get()->toArray();
+
             $binarySearch     = new BinarySearch();
             $result           = $binarySearch->binarySearch($data, $inputkode);
 

@@ -20,7 +20,7 @@ return new class extends Migration
             $table->string('harga_jual', 32);
             $table->string('satuan', 20);
             $table->date('tanggal_keluar');
-            $table->string('surat_keluar', 60);
+            $table->string('foto_surat', 60);
             $table->timestamps();
 
             $table->foreign('barang_id')->references('id')->on('barang')->onDelete('cascade');

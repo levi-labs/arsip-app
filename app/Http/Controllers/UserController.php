@@ -4,28 +4,34 @@ namespace App\Http\Controllers;
 
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
+
 
 class UserController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index() : String
     {
         $title      = 'Daftar User';
-
-
-        return view('pages.user.index', ['title' => $title]);
+        $data       = User::all();
+        return view('pages.user.index', [
+            'title' => $title,
+            'data'  => $data
+        ]);
     }
 
     /**
      * Show the form for creating a new resource.
      */
-    public function create()
+    public function create() : String
     {
         $title      = 'Form Tambah User';
 
-        return view('pages.user.tambah', ['title' => $title]);
+        return view('pages.user.tambah', [
+            'title' => $title
+        ]);
     }
 
     /**
@@ -46,13 +52,11 @@ class UserController extends Controller
             $user->password = bcrypt($request->password);
 
             $user->save();
-
             return redirect('daftar-user')->with('success', 'User added successfully...');
         } catch (\Exception $e) {
             return back()->with('failed', $e->getMessage());
         }
     }
-
     /**
      * Display the specified resource.
      */
@@ -69,9 +73,11 @@ class UserController extends Controller
     public function edit(User $user)
     {
         $title          = 'Form Edit User';
-
-
-        return view('pages.user.edit', ['title' => $title]);
+        $user           = User::where('id', $user->id)->first();
+        return view('pages.user.edit', [
+            'title' => $title,
+            'user'  => $user
+        ]);
     }
 
     /**
@@ -83,7 +89,6 @@ class UserController extends Controller
             'nama'      => 'required',
             'username'  => 'required',
         ]);
-
         try {
             $user           = User::where('id', $user->id)->first();
             $user->nama     = $request->nama;
@@ -105,6 +110,32 @@ class UserController extends Controller
         $user->delete();
 
         return back()->with('success', 'User deleted successfully...');
+    }
+
+    public function editPassword()
+    {
+        $title      = 'Form Edit Password';
+
+        return view('pages.user.edit_password', ['title' => $title]);
+
+    }
+
+    public  function updatePassword(Request $request)
+    {
+        $user           = User::where('id', Auth()->user()->id)->first();
+        $checkOldPassword    = $user->password;
+        $inputOldPassword    = $request->old_password;
+
+        if (Hash::check($inputOldPassword, $checkOldPassword)){
+            $user->password = bcrypt($request->password);
+            $user->save();
+
+            return back()->with('success', 'Password updated successfully...');
+        }else{
+            return back()->withErrors(['old_password' => 'You\'r old password has been entered incorrectly' ] );
+        }
+
+
     }
 
     public function resetPassword(User $user)

@@ -1,8 +1,5 @@
 @extends('layouts.main')
 @section('content')
-    {{-- @php
-        dd(session()->all());
-    @endphp --}}
     <div class="row">
         <div class="col-sm-12">
             <div class="card">
@@ -10,7 +7,7 @@
                     @if (session('failed'))
                         <div class="alert alert-danger" role="alert">{{ session('failed') }}</div>
                     @elseif(session('success'))
-                        <div class="alert alert-danger" role="alert">{{ session('success') }}</div>
+                        <div class="alert alert-success" role="alert">{{ session('success') }}</div>
                     @endif
                     {{-- <h5>Basic Componant</h5> --}}
                 </div>
@@ -97,7 +94,6 @@
                                 </div>
                         </div>
                         <div class="col-md-6">
-
                             <div class="form-group">
                                 <label>Kode Surat Jalan</label>
                                 @if (session()->get('surat'))
@@ -109,7 +105,6 @@
                                 @error('kode_surat')
                                     <span class="text-danger text-sm">{{ $message }}</span>
                                 @enderror
-
                             </div>
 
                             <div class="form-group">
@@ -157,55 +152,50 @@
             <!-- Input group -->
         </div>
     </div>
-
-    @isset($barangMasukList)
+    @isset($barangKeluarList)
         <div class="row">
             <div class="col-xl-12">
                 <div class="card">
                     <div class="card-header">
                         @if (session('success'))
-                            <div class="alert alert-success text-dark" role="alert">{{ session('success') }}</div>
+                            <div class="alert alert-info text-dark" role="alert">Barang Keluar dengan No Surat-{{ session()->get('surat') }} added successfully..</div>
                         @endif
                         <h5>Daftar Barang Masuk dengan No Surat-{{ session()->get('surat') }}</h5>
                         {{-- <span class="d-block m-t-5">use class <code>table-hover</code> inside table element</span> --}}
-
                     </div>
-
                     <div class="card-block table-border-style">
-
                         <div class="table-responsive">
                             <table class="table table-hover">
                                 <thead>
                                     <tr class="text-center">
                                         <th>#</th>
-                                        <th>Kode Barang</th>
+                                        <th>Kode Barang Keluar</th>
                                         <th>Nama Barang</th>
-                                        <th>Qty Masuk</th>
-                                        <th>Qty Rusak</th>
-                                        <th>Qty Diterima</th>
+                                        <th>Qty Keluar</th>
+                                        <th>Harga Jual</th>
+                                        <th>Unit</th>
                                         <th>Option</th>
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    @foreach ($barangMasukList as $bml)
+                                    @foreach ($barangKeluarList as $bkl)
                                         <tr class="text-center">
                                             <th scope="row">{{ $loop->iteration }}</th>
-                                            <td>{{ $bml->kode_barang_masuk }}</td>
-                                            <td>{{ $bml->barang_id }}</td>
-                                            <td>{{ $bml->qty_masuk }}</td>
-                                            <td>{{ $bml->qty_rusak }}</td>
-                                            <td>{{ $bml->qty_diterima }}</td>
+                                            <td>{{ $bkl->kode_barang_keluar }}</td>
+                                            <td>{{ $bkl->barangs->nama }}</td>
+                                            <td>{{ $bkl->qty_keluar }}</td>
+                                            <td>@currency($bkl->harga_jual)</td>
+                                            <td>{{ $bkl->satuan }}</td>
                                             <td>
                                                 <a class="btn btn-info btn-sm text-sm"
-                                                    href="{{ url('/detail-barang-masuk/' . $bml->id) }}">Detail</a>
+                                                    href="{{ url('/detail-barang-keluar/' . $bkl->id) }}">Detail</a>
                                                 <a class="btn btn-warning btn-sm text-sm"
-                                                    href="{{ url('/edit-barang-masuk/' . $bml->id) }}">Edit</a>
+                                                    href="{{ url('/edit-barang-keluar/' . $bkl->id) }}">Edit</a>
                                                 <a class="btn btn-danger btn-sm"
-                                                    href="{{ url('/hapus-barang-masuk/' . $bml->id) }}">Hapus</a>
+                                                    href="{{ url('/hapus-barang-keluar/' . $bkl->id) }}">Hapus</a>
                                             </td>
                                         </tr>
                                     @endforeach
-
                                 </tbody>
                             </table>
                         </div>
@@ -214,5 +204,4 @@
             </div>
         </div>
     @endisset
-
 @endsection

@@ -7,6 +7,7 @@ use App\Models\BarangKeluar;
 use App\Models\Cabang;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Storage;
 
 class BarangKeluarController extends Controller
 {
@@ -17,6 +18,7 @@ class BarangKeluarController extends Controller
     {
         session()->forget('tujuan');
         session()->forget('surat');
+        session()->forget('kode');
 
         $title      = 'Daftar Barang Keluar';
 
@@ -34,14 +36,14 @@ class BarangKeluarController extends Controller
 
     public function listDetailItem($params)
     {
-        $title      = 'Daftar Barang Masuk | No Surat ' . $params;
+        $title      = 'Daftar Barang Keluar | No Surat ' . $params;
         $data       = BarangKeluar::where('kode_surat', $params)->get();
         $singleData = BarangKeluar::where('kode_surat', $params)->first();
 
-        session()->put('tujuan', $singleData->kategori_sumber);
+        session()->put('tujuan', $singleData->jenis_tujuan);
         session()->put('surat', $singleData->kode_surat);
 
-        return view('pages.barangmasuk.daftar_detail', [
+        return view('pages.barangkeluar.daftar_detail', [
             'title'     => $title,
             'data'      => $data,
             'params'    => $params
@@ -67,7 +69,6 @@ class BarangKeluarController extends Controller
 
         $kodeBarangMasuk    = new BarangKeluar();
         $tujuan             = strtolower($request->input('tujuan'));
-
         $tujuanDetail       = strtolower(session()->get('tujuan'));
         session()->put('tujuan', $tujuanDetail);
 
@@ -157,18 +158,18 @@ class BarangKeluarController extends Controller
             if ($imgSuratJalan) {
                 $fileName                   = $request->kode_barang_keluar . '-' . $imgSuratJalan->getClientOriginalExtension();
                 $path                       = $imgSuratJalan->storeAs('images', $fileName);
-
                 $barangKeluar->foto_surat   = $path;
             }
             $barangKeluar->save();
-
             $barang                             = Barang::where('id', $request->barang)->first();
             $barang->stock                      = $barang->stock - $barangKeluar->qty_keluar;
             $barang->save();
 
             DB::commit();
 
-            return redirect('tambah-barang-keluar/' . $request->jenis_tujuan)->with('success', 'Barang Keluar added successfully...');
+            session()->put('surat',  $barangKeluar->kode_surat);
+
+            return back()->with('success', 'Barang Keluar added successfully...');
         } catch (\Exception $e) {
             DB::rollBack();
 
@@ -187,7 +188,7 @@ class BarangKeluarController extends Controller
 
             return view('pages.barangkeluar.detail', [
                 'title'         => $title,
-                'barangKeluar'  => $barangKeluar
+                'data'              => $barangKeluar
             ]);
         } catch (\Exception $e) {
 
@@ -205,17 +206,19 @@ class BarangKeluarController extends Controller
         $data       = BarangKeluar::where('id', $barangKeluar->id)->first();
         $barang     = Barang::all();
         session()->put('kode', $data->kode_surat);
-        if ($data->kategori_sumber == 'cabang') {
+        $tujuanDetail       = strtolower(session()->get('tujuan')) ?? $data->jenis_tujuan;
+        if (strtolower($data->jenis_tujuan) == 'cabang') {
             $tujuan_barang  = Cabang::all();
         } else {
-            $tujuan_barang  = $barangKeluar->jenis_tujuan;
+            $tujuan_barang  = $barangKeluar->nama_tujuan;
         }
 
         return view('pages.barangkeluar.edit', [
             'title'         => $title,
             'data'          => $data,
             'barang'        => $barang,
-            'tujuan_barang' => $tujuan_barang
+            'tujuan_barang' => $tujuan_barang,
+            'tujuanDetail'  => $tujuanDetail
         ]);
     }
 
@@ -226,7 +229,7 @@ class BarangKeluarController extends Controller
     {
 
         $this->validate($request, [
-            'kode_barang_keluar' => 'required',
+
             'barang'             => 'required',
             'qty_keluar'         => 'required',
             'harga_jual'         => 'required',
@@ -234,11 +237,13 @@ class BarangKeluarController extends Controller
             'nama_tujuan'        => 'required',
             'satuan'             => 'required',
             'tanggal_keluar'     => 'required',
-            'foto_surat'         => 'required'
+
         ]);
-        DB::beginTransaction();
+
+
 
         try {
+            DB::beginTransaction();
             $barangKeluar                       = BarangKeluar::where('id', $barangKeluar->id)->first();
             $barangKeluar->kode_barang_keluar   = $request->kode_barang_keluar;
             $barangKeluar->kode_surat           = $request->kode_surat;
@@ -249,16 +254,27 @@ class BarangKeluarController extends Controller
             $barangKeluar->satuan               = $request->satuan;
             $barangKeluar->tanggal_keluar       = $request->tanggal_keluar;
 
+            $imgSuratJalan                      = $request->file('foto_surat');
+            if ($imgSuratJalan) {
+
+                if ($barangKeluar->foto_surat != null) {
+                    Storage::delete($barangKeluar->foto_surat);
+                }
+                $fileName                       = $request->kode_barang_keluar . '-' . $imgSuratJalan->getClientOriginalExtension();
+                $path                           = $imgSuratJalan->storeAs('images', $fileName);
+            } else {
+                $path                           = $barangKeluar->foto_surat;
+            }
+            $barangKeluar->foto_surat           = $path;
+
             $barang                             = Barang::where('id', $barangKeluar->barang_id)->first();
-            $tempQty                            = $barang->stock - $barangKeluar->qty_keluar;
+            $tempQty                            = $barang->stock + $barangKeluar->qty_keluar;
+
+            $barang->stock                      = $tempQty - $request->qty_keluar;
             $barangKeluar->qty_keluar           = $request->qty_keluar;
-            $barangKeluar->save();
-
-            $barang->stock                      = $tempQty + $request->qty_keluar;
             $barang->save();
-
+            $barangKeluar->save();
             DB::commit();
-
 
             return redirect('/daftar-detail-barang-keluar/' .  $request->kode_surat)->with('success', 'Barang Keluar updated successfully...');
         } catch (\Exception $e) {

@@ -4,7 +4,7 @@
         <div class="col-sm-12">
             <div class="card">
                 <div class="card-header">
-                    <h5>PT.ABC</h5>
+
                 </div>
                 <div class="card-body">
                     <h5>{{ $title }}</h5>

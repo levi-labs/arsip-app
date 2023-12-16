@@ -29,7 +29,7 @@
                                 <tr class="text-center">
                                     <th>#</th>
                                     <th>Kode Surat | No Arsip</th>
-                                    <th>Quantity Diterima</th>
+                                    <th>Quantity Keluar</th>
                                     <th>Tanggal</th>
                                     <th>Option</th>
                                 </tr>
@@ -38,17 +38,17 @@
                                 @foreach ($data as $dt)
                                     <tr class="text-center">
                                         <th scope="row">{{ $loop->iteration }}</th>
-                                        <td>{{ $dt->kode_barang_masuk }}</td>
-                                        <td>{{ $dt->qty_diterima }}</td>
-                                        <td>{{ $dt->tanggal_masuk }}</td>
+                                        <td>{{ $dt->kode_barang_keluar }}</td>
+                                        <td>{{ $dt->qty_keluar }}</td>
+                                        <td>{{ $dt->tanggal_keluar }}</td>
 
                                         <td>
                                             <a class="btn btn-success btn-sm text-sm"
-                                                href="{{ url('/detail-barang-masuk/' . $dt->id) }}">Detail</a>
+                                                href="{{ url('/detail-barang-keluar/' . $dt->id) }}">Detail</a>
                                             <a class="btn btn-warning btn-sm text-sm"
-                                                href="{{ url('/edit-barang-masuk/' . $dt->id) }}">Edit</a>
+                                                href="{{ url('/edit-barang-keluar/' . $dt->id) }}">Edit</a>
                                             <a class="btn btn-danger btn-sm"
-                                                href="{{ url('/hapus-barang-masuk/' . $dt->id) }}">Hapus</a>
+                                                href="{{ url('/hapus-barang-keluar/' . $dt->id) }}">Hapus</a>
                                         </td>
                                     </tr>
                                 @endforeach
