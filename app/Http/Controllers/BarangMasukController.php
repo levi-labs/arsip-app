@@ -65,6 +65,7 @@ class BarangMasukController extends Controller
         $sumber             = strtolower($request->input('sumber'));
 
         $sumberDetail       = strtolower(session()->get('sumber'));
+
         session()->put('sumber', $sumberDetail);
 
         $alternatif         = strtolower($request->input('params'));

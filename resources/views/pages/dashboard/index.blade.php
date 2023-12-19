@@ -1,7 +1,20 @@
 @extends('layouts.main')
 @section('content')
+    @if(session()->has('login_success'))
+
+        <div class="row">
+            <div class="col-md-12">
+                <div class="alert alert-info">{{session('login_success')}}</div>
+            </div>
+        </div>
+    @endif
+
     <div class="row">
         <!--[ daily sales section ] start-->
+{{--        @php--}}
+{{--        session()->forget('success');--}}
+{{--            dd(session()->all());--}}
+{{--        @endphp--}}
         <div class="col-md-6 col-xl-4">
             <div class="card daily-sales">
                 <div class="card-block">
@@ -9,7 +22,7 @@
                     <div class="row d-flex align-items-center">
                         <div class="col-9">
                             <h3 class="f-w-300 d-flex align-items-center m-b-0"><i
-                                    class="feather icon-arrow-down text-c-green f-30 m-r-10"></i>89</h3>
+                                    class="feather icon-arrow-down text-c-green f-30 m-r-10"></i>{{$barangMasuk}}</h3>
                         </div>
 
 
@@ -30,7 +43,7 @@
                     <div class="row d-flex align-items-center">
                         <div class="col-9">
                             <h3 class="f-w-300 d-flex align-items-center  m-b-0"><i
-                                    class="feather icon-arrow-up text-c-red f-30 m-r-10"></i>50</h3>
+                                    class="feather icon-arrow-up text-c-red f-30 m-r-10"></i>{{$barangKeluar}}</h3>
                         </div>
 
                     </div>
@@ -50,7 +63,7 @@
                     <div class="row d-flex align-items-center">
                         <div class="col-9">
                             <h3 class="f-w-300 d-flex align-items-center  m-b-0"><i
-                                    class="feather icon-box text-c-blue f-30 m-r-10"></i>500</h3>
+                                    class="feather icon-box text-c-blue f-30 m-r-10"></i>{{$barang}}</h3>
                         </div>
                         <div class="col-3 text-right">
                             <p class="m-b-0">80%</p>
@@ -64,4 +77,6 @@
             </div>
         </div>
     </div>
+
+
 @endsection

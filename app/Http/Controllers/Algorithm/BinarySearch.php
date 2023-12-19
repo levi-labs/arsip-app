@@ -11,8 +11,9 @@ class BinarySearch extends Controller
     {
         //batas kiri
         $left   = 0;
-        //batas kanan
+        //batas kanan panjang array - 1
         $right  = count($arr) - 1;
+
 
         while ($left <= $right) {
             //panjang data di bagi 2, untuk menentukan titik tengah

@@ -4,10 +4,10 @@
         <div class="col-sm-12">
             <div class="card">
                 <div class="card-header">
-                    <h5>PT.ABC</h5>
+                    <h5>{{ $titleForm }}</h5>
                 </div>
                 <div class="card-body">
-                    <h5>{{ $title }}</h5>
+{{--                    <h5>{{ $title }}</h5>--}}
                     <hr>
                     <div class="row justify-content-center">
                         <div class="col-md-6">
@@ -96,6 +96,8 @@
                             </div>
 
                         </div>
+                    @elseif(isset($result) == -1)
+                        <div class="alert alert-info text-sm text-dark"><b>Kode Surat Tidak ditemukan</b></div>
                     @else
                         <div class="table-responsive">
                             <table class="table table-hover">
@@ -116,7 +118,7 @@
 
                                             <td>
                                                 <a class="btn btn-success btn-sm text-sm"
-                                                    href="{{ url('/detail-arsip-masuk/' . $dt->kode_surat) }}">Detail</a>
+                                                    href="{{ url('/detail-arsip-keluar/' . $dt->kode_surat) }}">Detail</a>
                                                 {{-- <a class="btn btn-warning btn-sm text-sm"
                                                     href="{{ url('/edit-barang/' . $dt->id) }}">Edit</a>
                                                 <a class="btn btn-danger btn-sm"

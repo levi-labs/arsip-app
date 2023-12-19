@@ -149,15 +149,15 @@
                             <div class="pro-head">
                                 {{-- <img src="{{ asset('assets/images/user/avatar-1.jpg') }}" class="img-radius"
                                     alt="User-Profile-Image"> --}}
-                                <span>John Doe</span>
+                                <span>{{Auth()->user()->username ?? 'Not Found'}}</span>
                                 <a href="/sign-out" class="dud-logout" title="Sign-Out">
                                     <i class="feather icon-log-out"></i>
                                 </a>
                             </div>
                             <ul class="pro-body">
-                                <li><a href="/profile" class="dropdown-item"><i class="feather icon-user"></i>
-                                        Profile</a></li>
-                                <li><a href="auth-signin.html" class="/ubah-password"><i class="feather icon-lock"></i>
+{{--                                <li><a href="/profile" class="dropdown-item"><i class="feather icon-user"></i>--}}
+{{--                                        Profile</a></li>--}}
+                                <li><a href="/ubah-password" class="dropdown-item"><i class="feather icon-lock"></i>
                                         Ubah Password</a></li>
                                 <li><a href="sign-out" class="dropdown-item"><i class="feather icon-log-out"></i> Sign
                                         Out</a></li>

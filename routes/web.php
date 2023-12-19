@@ -101,7 +101,7 @@ Route::controller(ArsipKeluarController::class)->group(function () {
     Route::get('arsip-keluar', 'index');
     Route::post('arsip-keluar', 'index');
     Route::post('post-arsip-keluar', 'store');
-    Route::get('detail-arsip-keluar/{barangMasuk}', 'detailArsip');
+    Route::get('detail-arsip-keluar/{barangKeluar}', 'detailArsip');
 });
 
 //Users Management
@@ -125,7 +125,10 @@ Route::controller(ReportController::class)->group(function () {
     Route::post('/post-report-keluar', 'sendReportKeluar');
 });
 
-
+Route::get('sign-out' , function (){
+    Auth::logout();
+    return redirect('login');
+});
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');

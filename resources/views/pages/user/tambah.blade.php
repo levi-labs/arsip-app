@@ -4,14 +4,20 @@
         <div class="col-sm-12">
             <div class="card">
                 <div class="card-header">
-
+                    <h5>{{ $title }}</h5>
                 </div>
                 <div class="card-body">
-                    <h5>{{ $title }}</h5>
+                    @if(session()->has('failed'))
+                        <div class="alert alert-danger">{{session('failed')}}</div>
+
+                    @endif
+
+
+
                     <hr>
                     <div class="row justify-content-center">
                         <div class="col-md-6">
-                            <form method="POST" action="{{ url('/post-barang') }}" enctype="multipart/form-data">
+                            <form method="POST" action="{{ url('/post-user') }}" enctype="multipart/form-data">
                                 @csrf
 
                                 <div class="form-group">
@@ -31,7 +37,7 @@
                                 <div class="form-group">
                                     <label for="exampleInputPassword1">Password</label>
                                     <input type="password" class="form-control" id="exampleInputPassword1" name="password">
-                                    @error('harga')
+                                    @error('password')
                                         <span class="text-sm text-danger">{{ $message }}</span>
                                     @enderror
                                 </div>

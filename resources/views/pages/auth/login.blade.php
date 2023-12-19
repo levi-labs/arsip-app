@@ -29,40 +29,55 @@
 </head>
 
 <body>
-    <div class="auth-wrapper">
-        <div class="auth-content">
-            <div class="auth-bg">
-                <span class="r"></span>
-                <span class="r s"></span>
-                <span class="r s"></span>
-                <span class="r"></span>
-            </div>
-            <div class="card">
-                <div class="card-body text-center">
-                    <div class="mb-4">
-                        <i class="feather icon-unlock auth-icon"></i>
-                    </div>
-                    <h3 class="mb-4">Login</h3>
-                    <form action="">
-                        <div class="input-group mb-3">
-                            <input type="email" class="form-control" placeholder="Email">
+<div class="row justify-content-center">
+    <div class="col-md-8">
+        <div class="auth-wrapper">
+            <div class="auth-content">
+                <div class="auth-bg">
+                    <span class="r"></span>
+                    <span class="r s"></span>
+                    <span class="r s"></span>
+                    <span class="r"></span>
+                </div>
+                <div class="card">
+                    <div class="card-body text-center">
+                        <div class="mb-4">
+                            <i class="feather icon-unlock auth-icon"></i>
                         </div>
-                        <div class="input-group mb-4">
-                            <input type="password" class="form-control" placeholder="password">
-                        </div>
-                        {{-- <div class="form-group text-left">
-                            <div class="checkbox checkbox-fill d-inline">
-                                <input type="checkbox" name="checkbox-fill-1" id="checkbox-fill-a1" checked="">
-                                <label for="checkbox-fill-a1" class="cr"> Save Details</label>
+                        <h3 class="mb-4">Login</h3>
+                        @if($errors->any())
+                            <div class="alert alert-danger">
+                                <ul>
+                                    @foreach ($errors->all() as $error)
+                                        <li>{{ $error }}</li>
+                                    @endforeach
+                                </ul>
                             </div>
-                        </div> --}}
-                        <button type="submit" class="btn btn-primary shadow-2 mb-4">Login</button>
-                    </form>
+                        @endif
+                        <form method="POST" action="{{ route('login') }}">
+                            @csrf
+                            <div class="input-group mb-3">
+                                <input type="text" class="form-control" placeholder="username" name="username">
+
+                            </div>
+                            <div class="input-group mb-4">
+                                <input type="password" class="form-control" placeholder="password" name="password">
+
+                            </div>
+                            {{-- <div class="form-group text-left">
+                                <div class="checkbox checkbox-fill d-inline">
+                                    <input type="checkbox" name="checkbox-fill-1" id="checkbox-fill-a1" checked="">
+                                    <label for="checkbox-fill-a1" class="cr"> Save Details</label>
+                                </div>
+                            </div> --}}
+                            <button type="submit" class="btn btn-primary shadow-2 mb-4">Login</button>
+                        </form>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
-
+</div>
     <!-- Required Js -->
     <script src="{{ asset('assets/js/vendor-all.min.js') }}"></script>
     <script src="{{ asset('assets/plugins/bootstrap/js/bootstrap.min.js') }}"></script>

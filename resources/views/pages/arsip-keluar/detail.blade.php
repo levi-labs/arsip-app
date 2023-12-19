@@ -37,22 +37,25 @@
 
                         <p class="text-dark">
                             <b>
+                                Dari :
+                                <br>
                                 {{ $kopTitle }}
                             </b>
                         </p>
                         <p>
                             {{ $kopAlamat }}
-                        </p>
-                        <p>
+                            <br>
                             {{ $kopTelp }}
                         </p>
+
 
                     </div>
                     <div class="clear"></div>
                     <div class="col-md-3 text-left">
                         <p>
                             <b>
-                                {{ 'Dari: ' . $kopTanggal->sumber_barang }}
+                                Kepada: <br>
+                                {{ strtoupper($kopTanggal->nama_tujuan) }}
                             </b>
                         </p>
                         <p>
@@ -70,15 +73,11 @@
                             <thead>
                             <tr class="text-center">
                                 <th>#</th>
-                                <th>Kode<br> Barang Masuk</th>
+                                <th>Kode<br> Barang Keluar</th>
                                 <th>Nama<br> Barang</th>
-
-                                <th>Qty <br> Masuk</th>
-                                <th>Qty <br> Rusak</th>
-                                <th>Qty <br> Diterima</th>
-
+                                <th>Qty <br> Keluar</th>
                                 <th>Satuan</th>
-                                <th>Harga <br> Beli</th>
+                                <th>Harga <br> Jual</th>
                                 <th>Sub <br> Total</th>
 
 
@@ -91,23 +90,21 @@
                             @foreach ($data as $dt)
                                 <tr class="text-center">
                                     <th scope="row">{{ $loop->iteration }}</th>
-                                    <td>{{ $dt->kode_barang_masuk }}</td>
+                                    <td>{{ $dt->kode_barang_keluar }}</td>
                                     <td>{{ $dt->barangs->nama }}</td>
-                                    <td>{{ $dt->qty_masuk }}</td>
-                                    <td>{{ $dt->qty_rusak }}</td>
-                                    <td>{{ $dt->qty_diterima }}</td>
+                                    <td>{{ $dt->qty_keluar }}</td>
                                     <td>{{ $dt->satuan }}</td>
-                                    <td>@currency($dt->harga_beli)</td>
-                                    <td>@currency($dt->harga_beli * $dt->qty_diterima) </td>
+                                    <td>@currency($dt->harga_jual)</td>
+                                    <td>@currency($dt->harga_jual * $dt->qty_keluar )</td>
                                     @php
-                                        $total += $dt->harga_beli * $dt->qty_diterima;
+                                        $total += $dt->harga_jual * $dt->qty_keluar;
                                     @endphp
 
                                 </tr>
                             @endforeach
 
                             <tr>
-                                <th class="text-right" colspan="8">Total :</th>
+                                <th class="text-right" colspan="6">Total :</th>
                                 <td class="text-center">@currency($total)</td>
                             </tr>
                             </tbody>

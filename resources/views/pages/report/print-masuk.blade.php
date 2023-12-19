@@ -1,5 +1,6 @@
 @extends('reports-layout.main')
 @section('surat')
+
     <center>
         <h4>Laporan Barang Masuk</h4>
         <h4>Periode :
@@ -121,4 +122,5 @@
             </tr>
         </table>
     </div>
+
 @endsection

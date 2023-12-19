@@ -7,14 +7,20 @@
                     <div class="col-md-4 mt-5">
                         <img class="img-thumbnail custom-image" src="{{ $data->getImage() }}" alt="" width="600px;">
                     </div>
-                    <div class="col-md-6">
-                        <div class="row">
+                    <div class="col-md-8">
+                        <div class="row justify-content-center">
                             <h5>{{ 'Tujuan: ' . $data->nama_tujuan . ' / ' . $data->jenis_tujuan }} </h5>
                         </div>
                         <hr>
                         <div class="row justify-content-between">
-                            <h4>{{ 'No Surat-' . $data->kode_surat }}</h4>
-                            <h4>{{ $data->kode_barang_masuk }}</h4>
+                            <div class="col-md-8">
+                                <h5>{{ 'No Surat-' . $data->kode_surat }}</h5>
+                            </div>
+                        <div class="col-md-4">
+                            <h5>{{ $data->kode_barang_keluar }}
+                            </h5>
+                        </div>
+
                         </div>
                         <div class="card-block table-border-style">
                             <div class="table-responsive">

@@ -14,6 +14,8 @@ class BarangController extends Controller
      */
     public function index()
     {
+
+
         $title  = 'Daftar Barang';
         $data   = Barang::all();
 

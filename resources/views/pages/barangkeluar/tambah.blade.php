@@ -9,10 +9,11 @@
                     @elseif(session('success'))
                         <div class="alert alert-success" role="alert">{{ session('success') }}</div>
                     @endif
+                        <h5>{{ $title }}</h5>
                     {{-- <h5>Basic Componant</h5> --}}
                 </div>
                 <div class="card-body">
-                    <h5>{{ $title }}</h5>
+
                     <hr>
                     <div class="row">
                         <div class="col-md-6">
@@ -62,7 +63,7 @@
                                     <div class="form-group">
                                         <label>Nama Customer</label>
                                         <input type="hidden" name="jenis_tujuan" value='customer'>
-                                        <input type="text" class="form-control" placeholder="4000" name="nama_tujuan">
+                                        <input type="text" class="form-control" placeholder="Nama Customer" name="nama_tujuan">
                                         @error('nama_tujuan')
                                             <span class="text-danger text-sm">{{ $message }}</span>
                                         @enderror

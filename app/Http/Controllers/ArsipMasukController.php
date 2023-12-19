@@ -51,7 +51,8 @@ class ArsipMasukController extends Controller
                 return view('pages.arsip-masuk.index', [
                     'title'         => $title,
                     'data'          => $data,
-                    'titleForm'     => $titleForm
+                    'titleForm'     => $titleForm,
+                    'result'        => $result
                 ]);
             }
         } elseif (isset($inputkode) == null) {

@@ -42,7 +42,8 @@ class UserController extends Controller
         $this->validate($request, [
             'nama'      => 'required',
             'username'  => 'required',
-            'password'  => ['required', 'confirmed']
+            'password'  => 'required',
+            'kategori'  => 'required'
         ]);
 
         try {
@@ -50,6 +51,7 @@ class UserController extends Controller
             $user->nama     = $request->nama;
             $user->username = $request->username;
             $user->password = bcrypt($request->password);
+            $user->level    = $request->kategori;
 
             $user->save();
             return redirect('daftar-user')->with('success', 'User added successfully...');
@@ -95,7 +97,7 @@ class UserController extends Controller
             $user->username = $request->username;
             $user->save();
 
-            return redirect('daftar-user')->with('success', 'User added successfully...');
+            return redirect('daftar-user')->with('success', 'User updated successfully...');
         } catch (\Exception $e) {
             return back()->with('failed', $e->getMessage());
         }
@@ -115,27 +117,28 @@ class UserController extends Controller
     public function editPassword()
     {
         $title      = 'Form Edit Password';
-
         return view('pages.user.edit_password', ['title' => $title]);
 
     }
 
     public  function updatePassword(Request $request)
     {
-        $user           = User::where('id', Auth()->user()->id)->first();
-        $checkOldPassword    = $user->password;
-        $inputOldPassword    = $request->old_password;
+        try {
+            $user                   = User::where('id', Auth()->user()->id)->first();
+            $checkOldPassword       = $user->password;
+            $inputOldPassword       = $request->old_password;
 
-        if (Hash::check($inputOldPassword, $checkOldPassword)){
-            $user->password = bcrypt($request->password);
-            $user->save();
+            if (Hash::check($inputOldPassword, $checkOldPassword)){
+                $user->password = bcrypt($request->new_password);
+                $user->save();
 
-            return back()->with('success', 'Password updated successfully...');
-        }else{
-            return back()->withErrors(['old_password' => 'You\'r old password has been entered incorrectly' ] );
+                return back()->with('success', 'Password updated successfully...');
+            }else{
+                return back()->withErrors(['old_password' => 'You\'r old password has been entered incorrectly' ] );
+            }
+        }catch (\Exception $e){
+            return back()->with('failed', $e->getMessage());
         }
-
-
     }
 
     public function resetPassword(User $user)
@@ -143,8 +146,9 @@ class UserController extends Controller
 
         $user   = User::where('id', $user->id)->first();
         $user->password = bcrypt($user->username);
+        $user->save();
 
 
-        return back()->with('success', 'User password changed to ' . $user->username);
+        return back()->with('reset-password', 'User with name: ' . '<b>' . $user->nama . '</b> '.' password changed to ' . "<b>" . $user->username ."</b>");
     }
 }

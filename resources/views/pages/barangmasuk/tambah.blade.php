@@ -9,11 +9,11 @@
                     @elseif(session('success'))
                         <div class="alert alert-danger" role="alert">{{ session('success') }}</div>
                     @endif
-
+                        <h5>{{ $title }}</h5>
                     {{-- <h5>Basic Componant</h5> --}}
                 </div>
                 <div class="card-body">
-                    <h5>{{ $title }}</h5>
+
                     <hr>
                     <div class="row">
                         <div class="col-md-6">

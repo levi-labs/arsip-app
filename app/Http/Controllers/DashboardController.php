@@ -2,6 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Barang;
+use App\Models\BarangKeluar;
+use App\Models\BarangMasuk;
 use App\Models\Dashboard;
 use Illuminate\Http\Request;
 
@@ -12,10 +15,12 @@ class DashboardController extends Controller
      */
     public function index()
     {
-        $title      = 'Dashboard';
-        $username   = 'Mahardika';
-
-        return view('pages.dashboard.index', compact('title', 'username'));
+        $title          = 'Dashboard';
+        $username       = 'Mahardika';
+        $barang         = Barang::count();
+        $barangMasuk    = BarangMasuk::count();
+        $barangKeluar   = BarangKeluar::count();
+        return view('pages.dashboard.index', compact('title', 'username', 'barang', 'barangMasuk', 'barangKeluar'));
     }
 
     /**

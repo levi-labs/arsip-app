@@ -13,7 +13,7 @@ class ArsipKeluarController extends Controller
     public function index(Request $request)
     {session()->forget('sumber');
         session()->forget('surat');
-        $title      = 'Daftar Arsip Keluar';
+        $title      = 'Daftar Arsip Keluar Barang';
         $titleForm  = 'Form Kode Arsip';
         $inputkode  = $request->kode_surat;
 
@@ -30,6 +30,7 @@ class ArsipKeluarController extends Controller
             if ($result != -1) {
 
                 $final_result = "Arsip found at index: $result";
+
                 $endTIme      = number_format(microtime(true) - $startTime, 2);
 
                 // dd($final_result, number_format($endTIme, 7) . ' milesecond');
@@ -41,14 +42,16 @@ class ArsipKeluarController extends Controller
                     'titleForm'     => $titleForm
                 ]);
             } else {
+
                 $data         = "element not found in the array";
                 return view('pages.arsip-keluar.index', [
                     'title'         => $title,
                     'data'          => $data,
-                    'titleForm'     => $titleForm
+                    'titleForm'     => $titleForm,
+                    'result'        => $result
                 ]);
             }
-        } elseif (isset($inputkode) == null) {
+        } elseif (!isset($inputkode)) {
             $startTime  = microtime(true);
             $data       = DB::table('barang_keluar as bk')
                 ->join('barang', 'bk.barang_id', '=', 'barang.id')
@@ -84,20 +87,19 @@ class ArsipKeluarController extends Controller
 
     public function detailArsip($barangKeluar)
     {
-        $title      = 'Detail Arsip Barang Masuk';
+        $title      = 'Detail Arsip Barang Keluar';
 
         $kopTitle   = 'PT. TIRTA MULTI BANGUNAN';
         $kopAlamat  = 'JL. H. DJOLE ( BANTARGEBANG-SETU ) RT 001 RW 003 KEL PADURENAN KEC MUSTIKA JAYA KOTA BEKASI';
         $kopTelp    = 'TELP : 021 8259 5311 / 0888 1300 028';
         $kopTanggal = BarangKeluar::where('kode_surat', $barangKeluar)->first();
-        dd($barangKeluar);
         $data       = BarangKeluar::where('kode_surat', $barangKeluar)->get();
-       // $supplier   = Supplier::where('nama', $kopTanggal->sumber_barang)->first();
-        $cabang     = Cabang::where('nama', $kopTanggal->jenis_tujuan)->first();
+//        $supplier   = Supplier::where('nama', $kopTanggal->sumber_barang)->first();
+        $cabang     = Cabang::where('nama', $kopTanggal->nama_tujuan)->first();
         // dd($kopTanggal->sumber_barang, $supplier);
         if ($cabang) {
             $tujuan_dari = $cabang;
-            return view('pages.arsip-masuk.detail', [
+            return view('pages.arsip-keluar.detail', [
                 'title'         => $title,
                 'data'          => $data,
                 'kopTitle'      => $kopTitle,
@@ -110,7 +112,7 @@ class ArsipKeluarController extends Controller
             $tujuan_dari = $kopTanggal->jenis_tujuan;
             // dd($supplier);
 
-            return view('pages.arsip-masuk.detail', [
+            return view('pages.arsip-keluar.detail', [
                 'title'         => $title,
                 'data'          => $data,
                 'kopTitle'      => $kopTitle,

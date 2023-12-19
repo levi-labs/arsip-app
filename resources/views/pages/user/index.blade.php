@@ -4,9 +4,13 @@
         <div class="col-xl-12">
             <div class="card">
                 <div class="card-header">
-                    @if (session('success'))
-                        <div class="alert alert-success text-dark" role="alert">{{ session('success') }}</div>
+                    @if (session('reset-password'))
+                        <div class="alert alert-info text-dark" role="alert">{!!session('reset-password') !!}</div>
                     @endif
+                         @if (session('success'))
+                            <div class="alert alert-success text-dark" role="alert">{!!session('success') !!}</div>
+                        @endif
+
                     <h5>{{ $title }}</h5>
                     {{-- <span class="d-block m-t-5">use class <code>table-hover</code> inside table element</span> --}}
 
@@ -39,7 +43,7 @@
                                                 href="{{ url('/reset-password/' . $dt->id) }}">Reset Password</a>
                                             <a class="btn btn-warning btn-sm text-sm"
                                                 href="{{ url('/edit-user/' . $dt->id) }}">Edit</a>
-                                            <a class="btn btn-danger btn-sm"
+                                            <a class="btn btn-danger btn-sm text-sm"
                                                 href="{{ url('/hapus-user/' . $dt->id) }}">Hapus</a>
                                         </td>
                                     </tr>
