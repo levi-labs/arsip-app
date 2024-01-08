@@ -76,7 +76,8 @@
                 </div>
                 <div class="row justify-content-start">
                     <div class="col-sm-4">
-                        <a class="btn btn-info btn-sm" href="{{ url('/daftar-detail/' . $data->kode_surat) }}">Kembali</a>
+                        <a class="btn btn-info btn-sm"
+                            href="{{ url('/daftar-detail-barang-masuk/' . $data->kode_surat) }}">Kembali</a>
                     </div>
 
                 </div>

@@ -9,7 +9,7 @@
                     @elseif(session('success'))
                         <div class="alert alert-danger" role="alert">{{ session('success') }}</div>
                     @endif
-                        <h5>{{ $title }}</h5>
+                    <h5>{{ $title }}</h5>
                     {{-- <h5>Basic Componant</h5> --}}
                 </div>
                 <div class="card-body">
@@ -189,7 +189,7 @@
                                         <tr class="text-center">
                                             <th scope="row">{{ $loop->iteration }}</th>
                                             <td>{{ $bml->kode_barang_masuk }}</td>
-                                            <td>{{ $bml->barang_id }}</td>
+                                            <td>{{ $bml->barangs->nama }}</td>
                                             <td>{{ $bml->qty_masuk }}</td>
                                             <td>{{ $bml->qty_rusak }}</td>
                                             <td>{{ $bml->qty_diterima }}</td>
