@@ -155,8 +155,6 @@ class BarangMasukController extends Controller
             'foto_surat'        => 'required'
         ]);
 
-
-
         DB::beginTransaction();
 
         try {
@@ -187,21 +185,17 @@ class BarangMasukController extends Controller
                 $barangMasuk->foto_surat    = $path;
             }
 
-
             $barang                         =  Barang::where('id', $request->barang)->first();
             $barang->stock                  =  $barang->stock + $barangMasuk->qty_diterima;
             $barang->update();
             $barangMasuk->save();
 
-
             DB::commit();
 
             session()->put('surat',  $barangMasuk->kode_surat);
-
-
             // return redirect('barang-masuk')->with('success', 'Barang Masuk added successfully...');
 
-            return back()->with('adding', 'Barang Masuk added successfully');
+            return back()->with('adding', 'Barang Masuk added successfully, Tambahkan item lain jika ada/Jika tidak maka kembali ke daftar Barang Masuk');
         } catch (\Exception $e) {
 
             DB::rollBack();
