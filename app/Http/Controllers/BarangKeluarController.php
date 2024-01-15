@@ -307,10 +307,10 @@ class BarangKeluarController extends Controller
 
             if ($count > 0) {
 
-                return redirect('daftar-detail-barang-masuk/' . $params)->with('success', 'Barang Keluar deleted successfully...');
+                return redirect('daftar-detail-barang-keluar/' . $params)->with('success', 'Barang Keluar deleted successfully...');
             } elseif ($count == 0) {
 
-                return redirect('/barang-masuk')->with('success', 'Semua Barang Keluar deleted successfully...');
+                return redirect('/barang-keluar')->with('success', 'Semua Barang Keluar deleted successfully...');
             }
         } catch (\Exception $e) {
 
