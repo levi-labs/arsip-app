@@ -33,43 +33,40 @@ class ReportController extends Controller
 
                 $data       = $data::where($column, '>=', $input_from)->get();
 
-                if ($column == 'tanggal_masuk'){
+                if ($column == 'tanggal_masuk') {
                     return [
                         'dari'      => $input_to,
                         'sampai'    => $maxRange->tanggal_masuk,
                         'data'      => $data
                     ];
-                }else{
+                } elseif ($column == 'tanggal_keluar') {
                     return [
                         'dari'      => $input_to,
                         'sampai'    => $maxRange->tanggal_keluar,
                         'data'      => $data
                     ];
                 }
-
-
             } elseif (!isset($input_from) && isset($input_to)) {
 
                 $data       = $data::where($column, '<=', $input_to)->get();
-                if ($column == 'tanggal_masuk'){
+                if ($column == 'tanggal_masuk') {
                     return [
                         'dari'      => $minRange->tanggal_masuk,
                         'sampai'    => $input_to,
                         'data'      => $data
                     ];
-                }else{
+                } elseif ($column == 'tanggal_keluar') {
                     return [
                         'dari'      => $minRange->tanggal_keluar,
                         'sampai'    => $input_to,
                         'data'      => $data
                     ];
                 }
-
             }
 
             if (isset($input_from) && isset($input_to)) {
                 $data       = $data::where($column, '>=', $input_from)
-                    ->where('tanggal_masuk', '<=', $input_to)
+                    ->where($column, '<=', $input_to)
                     ->get();
                 return [
                     'dari'      => $input_from,
@@ -88,19 +85,19 @@ class ReportController extends Controller
         $input_to       = $request->input_to;
         $column         = 'tanggal_masuk';
         $barangMasuk    = new BarangMasuk();
-        if (isset($input_from) && isset($input_to)){
+        if (isset($input_from) && isset($input_to)) {
             $barangMasuk    = new BarangMasuk();
             $result         = $this->rangeDateReport($barangMasuk, $input_from, $input_to, $column);
 
             return view('pages.report.print-masuk', ['result' => $result]);
-        }elseif (!isset($input_from) || !isset($input_to)){
+        } elseif (!isset($input_from) || !isset($input_to)) {
             $barangMasuk    = new BarangMasuk();
-            $result         = $this->rangeDateReport($barangMasuk, $input_from, $input_to,$column);
+            $result         = $this->rangeDateReport($barangMasuk, $input_from, $input_to, $column);
 
             return view('pages.report.print-masuk', ['result' => $result]);
-        }elseif(!isset($input_from ) && !isset($input_to)){
+        } elseif (!isset($input_from) && !isset($input_to)) {
 
-           return back()->with('failed', 'Form Tanggal Dari Or Tanggal Sampai required');
+            return back()->with('failed', 'Form Tanggal Dari Or Tanggal Sampai required');
         }
     }
 
@@ -110,15 +107,18 @@ class ReportController extends Controller
         $input_from     = $request->input_from;
         $input_to       = $request->input_to;
         $column         = 'tanggal_keluar';
-        if (isset($input_from) && isset($input_to)){
+        $result         = $this->rangeDateReport($barangKeluar, $input_from, $input_to, $column);
+        // dd($result);
+        if (isset($input_from) && isset($input_to)) {
 
-            $result         = $this->rangeDateReport( $barangKeluar, $input_from, $input_to,$column);
+            $result         = $this->rangeDateReport($barangKeluar, $input_from, $input_to, $column);
+            // dd($result);
             return view('pages.report.print-keluar', ['result' => $result]);
-        }elseif (!isset($input_from) || !isset($input_to)){
+        } elseif (!isset($input_from) || !isset($input_to)) {
 
-            $result         = $this->rangeDateReport($barangKeluar, $input_from, $input_to,$column);
+            $result         = $this->rangeDateReport($barangKeluar, $input_from, $input_to, $column);
             return view('pages.report.print-keluar', ['result' => $result]);
-        }elseif(!isset($input_from ) && !isset($input_to)){
+        } elseif (!isset($input_from) && !isset($input_to)) {
 
             return back()->with('failed', 'Form Tanggal Dari Or Tanggal Sampai required');
         }

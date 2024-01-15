@@ -11,68 +11,68 @@
 
         <button type="button" onclick="window.print()" class="btn">&nbsp;Print</button>
         <table class="table table-bordered d-print-table" style="border-collapse: collapse; border: 2px solid black;"
-               border="2">
+            border="2">
             <thead>
-            <tr class="text-center">
-                <th style="background-color: rgb(158, 198, 251)" class="text-center top-th" rowspan="2">
-                    No
-                </th>
-                <th style="background-color: rgb(158, 198, 251)" class="text-center top-th" rowspan="2">
-                    Kode<br>
-                    Barang Keluar
-                </th>
-                <th style="background-color: rgb(158, 198, 251)" class="text-center top-th" rowspan="2">
-                    Nama<br>
-                    Barang
-                </th>
-                <th style="background-color: rgb(158, 198, 251)" class="text-center top-th" rowspan="2">
-                    Qty<br>
-                    Keluar
-                </th>
-                <th style="background-color: rgb(158, 198, 251)" class="text-center top-th" rowspan="2">
-                    Satuan<br>
+                <tr class="text-center">
+                    <th style="background-color: rgb(158, 198, 251)" class="text-center top-th" rowspan="2">
+                        No
+                    </th>
+                    <th style="background-color: rgb(158, 198, 251)" class="text-center top-th" rowspan="2">
+                        Kode<br>
+                        Barang Keluar
+                    </th>
+                    <th style="background-color: rgb(158, 198, 251)" class="text-center top-th" rowspan="2">
+                        Nama<br>
+                        Barang
+                    </th>
+                    <th style="background-color: rgb(158, 198, 251)" class="text-center top-th" rowspan="2">
+                        Qty<br>
+                        Keluar
+                    </th>
+                    <th style="background-color: rgb(158, 198, 251)" class="text-center top-th" rowspan="2">
+                        Satuan<br>
 
-                </th>
-                <th style="background-color: rgb(158, 198, 251)" class="text-center top-th" rowspan="2">
-                    Harga<br>
-                    Jual
-                </th>
-                <th style="background-color: rgb(158, 198, 251)" class="text-center top-th" rowspan="2">
-                    Sub<br>
-                    Total
-                </th>
-            </tr>
+                    </th>
+                    <th style="background-color: rgb(158, 198, 251)" class="text-center top-th" rowspan="2">
+                        Harga<br>
+                        Jual
+                    </th>
+                    <th style="background-color: rgb(158, 198, 251)" class="text-center top-th" rowspan="2">
+                        Sub<br>
+                        Total
+                    </th>
+                </tr>
             </thead>
             <tbody>
-            @php
-                $total = 0;
-            @endphp
+                @php
+                    $total = 0;
+                @endphp
 
-            @foreach ($result['data'] as $dt)
-                <tr class="text-center">
-                    <td>{{ $loop->iteration }}</td>
-                    <td>{{ $dt->kode_barang_keluar }}</td>
-                    <td>{{ $dt->barangs->nama }}</td>
-                    <td>{{ $dt->qty_keluar }}</td>
-                    <td>{{ $dt->satuan }}</td>
-                    <td>@currency($dt->harga_jual)</td>
-                    <td> @currency($dt->harga_jual * $dt->qty_keluar)</td>
-                    @php
-                        $total += $dt->harga_jual * $dt->qty_keluar;
-                    @endphp
+                @foreach ($result['data'] as $dt)
+                    <tr class="text-center">
+                        <td>{{ $loop->iteration }}</td>
+                        <td>{{ $dt->kode_barang_keluar }}</td>
+                        <td>{{ $dt->barangs->nama }}</td>
+                        <td>{{ $dt->qty_keluar }}</td>
+                        <td>{{ $dt->satuan }}</td>
+                        <td>@currency($dt->harga_jual)</td>
+                        <td> @currency($dt->harga_jual * $dt->qty_keluar)</td>
+                        @php
+                            $total += $dt->harga_jual * $dt->qty_keluar;
+                        @endphp
 
+                    </tr>
+                @endforeach
+                <style>
+                    .text-right {
+                        text-align: center;
+                        padding-right: 5px;
+                    }
+                </style>
+                <tr>
+                    <td class="text-right" colspan="6">Total </td>
+                    <td class="text-center">@currency($total)</td>
                 </tr>
-            @endforeach
-            <style>
-                .text-right {
-                    text-align: center;
-                    padding-right: 5px;
-                }
-            </style>
-            <tr>
-                <td class="text-right" colspan="6">Total </td>
-                <td class="text-center">@currency($total)</td>
-            </tr>
             </tbody>
         </table>
         <br>
@@ -112,5 +112,4 @@
             </tr>
         </table>
     </div>
-
 @endsection
